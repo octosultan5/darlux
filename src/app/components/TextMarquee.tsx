@@ -3,23 +3,21 @@
 import React from "react";
 
 const items = [
-  "توصيل مجاني لكل المدن 🇲🇦",
-  "ضمان لمدة سنة كاملة ⭐",
-  "الدفع عند الاستلام 💸",
-  "بدون انترنت ولا إعلانات 🚫",
-  "محتوى آمن 100% 🛡️",
+  "توصيل مجاني لكل مدن المغرب 🇲🇦",
+  "تخفيض محدود اليوم: 149 درهم فقط 🔥",
+  "الدفع بعد المعاينة عند الاستلام 📦",
+  "بدون إنترنت ولا إعلانات 🚫",
+  "محتوى إسلامي ولغوي آمن 100% 🛡️",
 ];
 
 export default function TextMarquee() {
   return (
-    <div className="w-full bg-brand-primary text-brand-accent py-3 overflow-hidden flex whitespace-nowrap border-y border-blue-900 shadow-md dir-ltr">
-      {/* We force LTR for predictable marquee animation, while text remains arabic */}
-      <div className="flex animate-[marquee_40s_linear_infinite]" style={{ direction: "ltr" }}>
-        {/* Double the items to create the infinite loop effect */}
+    <div className="w-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 text-slate-950 py-3.5 overflow-hidden flex whitespace-nowrap border-y border-amber-300 shadow-xl">
+      <div className="flex animate-[marquee_30s_linear_infinite]" style={{ direction: "ltr" }}>
         {[...items, ...items, ...items, ...items].map((text, idx) => (
-          <div key={idx} className="flex items-center px-8 text-lg font-black tracking-wider">
-            {text}
-            <span className="mx-8 w-2 h-2 rounded-full bg-white/30 inline-block" />
+          <div key={idx} className="flex items-center px-6 text-sm sm:text-base font-black tracking-wider text-slate-950">
+            <span>{text}</span>
+            <span className="mx-6 w-2 h-2 rounded-full bg-slate-950/40 inline-block" />
           </div>
         ))}
       </div>

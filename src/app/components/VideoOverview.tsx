@@ -8,19 +8,24 @@ export default function VideoOverview() {
     const youtubeId = process.env.NEXT_PUBLIC_VIDEO_YOUTUBE_ID || "WNZK4_tD4C8";
 
     return (
-      <section className="py-20 bg-slate-50 rtl border-b border-slate-200">
-        <div className="container mx-auto px-5 max-w-5xl text-center">
-          <h2 className="text-3xl md:text-5xl font-black text-brand-primary mb-6">
-            شاهد كيف يعمل الفلاش ميموري
+      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#022c22] via-[#064e3b] to-[#022c22] text-white rtl relative overflow-hidden">
+        <div className="container mx-auto px-4 max-w-5xl text-center relative z-10">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 font-bold text-xs sm:text-sm mb-3">
+            عرض توضيحي للمكتبة 📺
+          </span>
+
+          <h2 className="text-3xl sm:text-5xl font-black mb-4">
+            شاهد كيف تعمل <span className="gold-gradient-text">فلاشة نور 64GB</span>
           </h2>
+
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto font-medium"
+            className="text-base sm:text-xl text-emerald-100/90 mb-10 max-w-2xl mx-auto font-medium leading-relaxed"
           >
-            نظرة سريعة على المحتوى وكيفية استخدامه على التلفاز الذكي، الحاسوب، أو هاتف طفلك.
+            نظرة سريعة على المحتوى وكيفية استخدامه مباشرة على التلفاز الذكي، الحاسوب، أو السيارة.
           </motion.p>
   
           {/* Video Player Box */}
@@ -29,7 +34,7 @@ export default function VideoOverview() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
-            className="relative w-full aspect-video bg-slate-900 rounded-3xl shadow-2xl overflow-hidden border-4 border-slate-800 group"
+            className="relative w-full aspect-video bg-slate-950 rounded-3xl shadow-[0_0_50px_rgba(6,78,59,0.8)] overflow-hidden border-2 border-amber-400/40 group"
           >
             {!isPlaying ? (
               <div 
@@ -43,22 +48,23 @@ export default function VideoOverview() {
                   className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700"
                 />
                 
-                {/* Dark Vignette overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-all flex flex-col justify-between p-6">
-                  {/* Top tag */}
-                  <div className="self-end bg-brand-accent/90 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
-                    عرض توضيحي للمكتبة 📺
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#021812] via-[#021812]/50 to-transparent group-hover:bg-black/30 transition-all flex flex-col justify-between p-6">
+                  
+                  {/* Top Badge */}
+                  <div className="self-end bg-amber-400 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-full shadow-lg">
+                    فيديو توضيحي تفاعلي 🎥
                   </div>
                   
-                  {/* Center play icon */}
-                  <div className="w-24 h-24 bg-brand-accent text-white rounded-full flex items-center justify-center text-4xl shadow-[0_0_30px_rgba(242,155,97,0.6)] group-hover:scale-110 transition-transform mx-auto">
-                    <i className="fa-solid fa-play ml-2"></i>
+                  {/* Center Play Icon */}
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-tr from-amber-400 to-amber-500 text-slate-950 rounded-full flex items-center justify-center text-3xl sm:text-4xl shadow-[0_0_40px_rgba(245,158,11,0.7)] group-hover:scale-110 transition-transform mx-auto">
+                    <i className="fa-solid fa-play ml-1" />
                   </div>
                   
                   {/* Bottom title */}
                   <div className="text-right">
-                    <h3 className="text-white text-xl md:text-2xl font-black drop-shadow-md">اضغط لتشغيل الفيديو التعريفي</h3>
-                    <p className="text-white/80 text-sm md:text-base font-bold drop-shadow-sm mt-1">اكتشف روعة المحتوى وجودته بدون إنترنت</p>
+                    <h3 className="text-amber-300 text-lg sm:text-2xl font-black drop-shadow-md">اضغط لتشغيل الفيديو التعريفي</h3>
+                    <p className="text-emerald-100/90 text-xs sm:text-sm font-bold drop-shadow-sm mt-1">اكتشف روعة المحتوى وجودته العالية بدون إنترنت</p>
                   </div>
                 </div>
               </div>
@@ -78,4 +84,3 @@ export default function VideoOverview() {
       </section>
     );
   }
-  

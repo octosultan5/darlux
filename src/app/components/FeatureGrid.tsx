@@ -7,47 +7,50 @@ export default function FeatureGrid() {
     {
       icon: "fa-solid fa-moon",
       title: "تربية إسلامية صحيحة",
-      desc: "قصص الأنبياء، أحاديث، وأناشيد تربوية هادفة ترسخ القيم.",
-      color: "text-brand-green bg-emerald-100"
+      desc: "قصص الأنبياء، أحاديث، وأناشيد تربوية هادفة ترسخ القيم والمبادئ.",
+      color: "text-amber-300 bg-amber-500/15 border-amber-400/30"
     },
     {
       icon: "fa-solid fa-language",
-      title: "تعلم اللغات بسهولة",
-      desc: "دروس تفاعلية بالإنجليزية، الفرنسية، والعربية الفصحى.",
-      color: "text-brand-primary bg-blue-100"
+      title: "تعلم 3 لغات بسهولة",
+      desc: "دروس تفاعلية بالإنجليزية، الفرنسية، والعربية الفصحى لجميع الأعمار.",
+      color: "text-emerald-300 bg-emerald-500/15 border-emerald-400/30"
     },
     {
       icon: "fa-solid fa-shield-cat",
       title: "بيئة آمنة 100%",
-      desc: "فيديوهات مختارة بعناية، بدون إعلانات مزعجة وبدون أنترنيت.",
-      color: "text-brand-accent bg-orange-100"
+      desc: "فيديوهات مختارة بعناية، بدون إعلانات مزعجة وبدون حاجة للأنترنيت.",
+      color: "text-amber-300 bg-amber-500/15 border-amber-400/30"
     },
     {
       icon: "fa-solid fa-sd-card",
-      title: "سعة 64 جيجا",
-      desc: "فلاش ميموري عالية الجودة تضم ساعات من المرح والتعلم.",
-      color: "text-purple-600 bg-purple-100"
+      title: "سعة 64 جيجا فائقة السرعة",
+      desc: "فلاش ميموري ذهبية عالية الجودة تضم مئات الساعات من المرح والتعلم.",
+      color: "text-emerald-300 bg-emerald-500/15 border-emerald-400/30"
     }
   ];
 
   return (
-    <section className="py-20 bg-white rtl relative">
-      {/* Curved Divider Top */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform -translate-y-full">
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="block w-full h-[60px] fill-white">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-        </svg>
-      </div>
+    <section className="py-16 sm:py-24 bg-gradient-to-b from-[#022c22] via-[#064e3b] to-[#022c22] text-white rtl relative overflow-hidden">
+      
+      {/* Glow Orbs */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="container mx-auto px-5 max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-black text-brand-primary mb-4">
-            شنو كيميز <span className="text-brand-accent">نور USB</span>؟
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
+        <div className="text-center mb-14">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 font-bold text-xs sm:text-sm mb-3">
+            لماذا يختار الأباء والأمهات فلاشة نور؟ 🌟
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-black mb-4">
+            مميزات الاستثمار في <span className="gold-gradient-text">مستقبل طفلك</span>
           </h2>
-          <p className="text-lg text-slate-500 font-medium">كل ما يحتاجه طفلك في مكان واحد آمن.</p>
+          <p className="text-base sm:text-lg text-emerald-100/80 font-medium max-w-xl mx-auto">
+            كل ما يحتاجه طفلك لينمو ذكياً، محافظاً، ومتفوقاً في مكان واحد آمن.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((item, index) => (
             <motion.div 
               key={index} 
@@ -55,13 +58,13 @@ export default function FeatureGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-slate-50 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 text-center group"
+              className="emerald-glass rounded-3xl p-6 sm:p-8 hover:border-amber-400/60 hover:-translate-y-2 transition-all duration-300 text-center group shadow-xl"
             >
-              <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${item.color}`}>
-                <i className={`${item.icon} text-4xl`}></i>
+              <div className={`w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${item.color}`}>
+                <i className={`${item.icon} text-3xl sm:text-4xl`} />
               </div>
-              <h3 className="text-xl font-black text-brand-primary mb-3">{item.title}</h3>
-              <p className="text-slate-600 font-medium leading-relaxed">{item.desc}</p>
+              <h3 className="text-lg sm:text-xl font-black text-amber-300 mb-3">{item.title}</h3>
+              <p className="text-emerald-100/80 text-sm leading-relaxed font-medium">{item.desc}</p>
             </motion.div>
           ))}
         </div>
