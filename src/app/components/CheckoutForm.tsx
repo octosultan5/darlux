@@ -6,7 +6,7 @@ import { submitOrder } from "../actions/order";
 
 export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
     const router = useRouter();
-    const [bundle, setBundle] = useState<number>(2);
+    const [bundle, setBundle] = useState<number>(1);
     const [orderBump, setOrderBump] = useState<boolean>(false);
     
     // Countdown Timer (14 mins 59 secs)
@@ -26,11 +26,12 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
         return () => clearInterval(timer);
     }, []);
 
-    // Pricing logic
-    let price = 399; // Default bundle 2
-    if (bundle === 1) price = 249;
-    if (bundle === 3) price = 549;
-    if (orderBump) price += 99;
+    // Pricing logic: 149 DH single USB
+    let price = 149;
+    if (bundle === 1) price = 149;
+    if (bundle === 2) price = 249;
+    if (bundle === 3) price = 349;
+    if (orderBump) price += 49;
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -51,10 +52,11 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
         setIsSubmitting(true);
 
         try {
-            let finalPrice = 399;
-            if (bundle === 1) finalPrice = 249;
-            if (bundle === 3) finalPrice = 549;
-            if (orderBump) finalPrice += 99;
+            let finalPrice = 149;
+            if (bundle === 1) finalPrice = 149;
+            if (bundle === 2) finalPrice = 249;
+            if (bundle === 3) finalPrice = 349;
+            if (orderBump) finalPrice += 49;
 
             const result = await submitOrder({
                 name,
@@ -92,7 +94,7 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                     </div>
 
                     <h2 className="text-3xl md:text-5xl font-black mb-3">
-                        استفد من <span className="gold-gradient-text">العرض الخاص قبل انتهاء الوقت</span>
+                        أطلب الآن بـ <span className="gold-gradient-text">149 درهم فقط</span> بدلاً من <span className="line-through text-slate-400 text-2xl">299 د.م</span>
                     </h2>
 
                     {/* Countdown Urgency Timer */}
@@ -106,7 +108,7 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                         </div>
                         <div className="bg-red-500/20 border border-red-500/40 text-red-300 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
                             <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-                            متبقي 4 قطع فقط
+                            متبقي 4 قطع فقط بهذا السعر
                         </div>
                     </div>
                 </div>
@@ -123,7 +125,7 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
 
                         <form onSubmit={handleSubmit} className="space-y-4">
                             {error && (
-                                <div className="bg-red-50 text-red-600 border border-red-200 rounded-xl p-4 text-sm font-bold text-center animate-shake">
+                                <div className="bg-red-50 text-red-600 border border-red-200 rounded-xl p-4 text-sm font-bold text-center">
                                     {error}
                                 </div>
                             )}
@@ -177,7 +179,7 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                                     </span>
                                 ) : (
                                     <>
-                                        <span>تأكيد الطلب الآن (الدفع عند الاستلام)</span>
+                                        <span>تأكيد الطلب بـ {price} درهم فقط</span>
                                         <i className="fa-solid fa-check-circle text-amber-300" />
                                     </>
                                 )}
@@ -185,10 +187,10 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                             
                             <div className="flex items-center justify-center gap-4 text-xs font-bold text-slate-500 mt-4 pt-2 border-t border-slate-100">
                                 <span className="flex items-center gap-1">
-                                    <i className="fa-solid fa-[#059669] fa-shield-halved text-emerald-600" /> ضمان الجودة 100%
+                                    <i className="fa-solid fa-shield-halved text-emerald-600" /> ضمان الجودة 100%
                                 </span>
                                 <span className="flex items-center gap-1">
-                                    <i className="fa-solid fa-[#059669] fa-truck-fast text-emerald-600" /> توصيل سريع وسري
+                                    <i className="fa-solid fa-truck-fast text-emerald-600" /> توصيل مجاني لكل المغرب
                                 </span>
                             </div>
                         </form>
@@ -206,18 +208,24 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                                 {/* Bundle 1 */}
                                 <div 
                                     onClick={() => setBundle(1)} 
-                                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 1 ? 'border-amber-400 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.2)]' : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'}`}
+                                    className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 1 ? 'border-amber-400 bg-amber-500/15 shadow-[0_0_20px_rgba(245,158,11,0.3)]' : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'}`}
                                 >
+                                    <div className="absolute -top-3 left-4 bg-gradient-to-r from-amber-500 to-emerald-500 text-slate-950 text-[11px] font-black px-3 py-0.5 rounded-full shadow-lg">
+                                        تخفيض 50% 🔥
+                                    </div>
                                     <div className="flex items-center gap-3">
                                         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${bundle === 1 ? 'border-amber-400' : 'border-slate-600'}`}>
                                             {bundle === 1 && <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />}
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-base text-white">1x فلاشة نور الذهبية 64GB</h4>
-                                            <p className="text-xs text-slate-400">مناسبة لطفل واحد</p>
+                                            <h4 className="font-bold text-base text-white">1x فلاشة نور 64GB</h4>
+                                            <p className="text-xs text-amber-300 font-bold">خصم خاص لفترة محدودة</p>
                                         </div>
                                     </div>
-                                    <span className="font-black text-lg text-amber-300">249 د.م</span>
+                                    <div className="text-left">
+                                        <span className="line-through text-slate-500 text-xs">299 د.م</span><br/>
+                                        <span className="font-black text-xl text-amber-300">149 د.م</span>
+                                    </div>
                                 </div>
 
                                 {/* Bundle 2 (Popular) */}
@@ -225,21 +233,21 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                                     onClick={() => setBundle(2)} 
                                     className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 2 ? 'border-emerald-400 bg-emerald-500/15 shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'}`}
                                 >
-                                    <div className="absolute -top-3 left-4 bg-gradient-to-r from-emerald-500 to-amber-500 text-slate-950 text-[11px] font-black px-3 py-0.5 rounded-full shadow-lg animate-pulse">
-                                        الأكثر طلباً ومبيعاً 🔥
+                                    <div className="absolute -top-3 left-4 bg-gradient-to-r from-emerald-500 to-amber-500 text-slate-950 text-[11px] font-black px-3 py-0.5 rounded-full shadow-lg">
+                                        الأكثر طلباً للأسر 👨‍👩‍👧‍👦
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${bundle === 2 ? 'border-emerald-400' : 'border-slate-600'}`}>
                                             {bundle === 2 && <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />}
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-base text-white">2x فلاشة نور 64GB (توفير خاص)</h4>
-                                            <p className="text-xs text-emerald-400 font-bold">توفير 99 درهم مالي</p>
+                                            <h4 className="font-bold text-base text-white">2x فلاشة نور 64GB</h4>
+                                            <p className="text-xs text-emerald-400 font-bold">توفير إضافي كبير</p>
                                         </div>
                                     </div>
                                     <div className="text-left">
-                                        <span className="line-through text-slate-500 text-xs">498 د.م</span><br/>
-                                        <span className="font-black text-xl text-emerald-300">399 د.م</span>
+                                        <span className="line-through text-slate-500 text-xs">598 د.م</span><br/>
+                                        <span className="font-black text-xl text-emerald-300">249 د.م</span>
                                     </div>
                                 </div>
                                 
@@ -253,11 +261,11 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                                             {bundle === 3 && <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />}
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-base text-white">3x باقة العائلة الكاملة</h4>
-                                            <p className="text-xs text-slate-400">أفضل قيمة بأقل سعر للقطعة</p>
+                                            <h4 className="font-bold text-base text-white">3x باقة العائلة الكبرى</h4>
+                                            <p className="text-xs text-slate-400">أقل سعر للقطعة الواحدة</p>
                                         </div>
                                     </div>
-                                    <span className="font-black text-lg text-amber-300">549 د.م</span>
+                                    <span className="font-black text-lg text-amber-300">349 د.م</span>
                                 </div>
                             </div>
 
@@ -271,7 +279,7 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                                 </div>
                                 <div className="text-xs">
                                     <span className="font-bold text-white block">
-                                        إضافة فلاشة السيارة الإضافية بـ <span className="text-amber-300 font-black">+99 د.م فقط</span>
+                                        إضافة فلاشة السيارة الإضافية بـ <span className="text-amber-300 font-black">+49 د.م فقط</span>
                                     </span>
                                     <span className="text-slate-400 block text-[11px]">أناشيد وقرآن كريم مخصصين للرحلات والسيارة</span>
                                 </div>
