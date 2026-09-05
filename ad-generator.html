@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Creative Generator - NoorUSB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #f1f5f9; }
+        
+        .ad-container {
+            width: 1080px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            margin: 20px auto;
+            transform: scale(0.6);
+            transform-origin: top center;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* 3D Text Effect like the example */
+        .text-3d {
+            color: #ffffff;
+            text-shadow: 
+                -2px -2px 0 #1e3a8a,  
+                 2px -2px 0 #1e3a8a,
+                -2px  2px 0 #1e3a8a,
+                 2px  2px 0 #1e3a8a,
+                 0px 4px 0 #0f172a,
+                 0px 8px 15px rgba(0,0,0,0.5);
+        }
+
+        .text-3d-yellow {
+            color: #fbbf24;
+            text-shadow: 
+                -2px -2px 0 #b45309,  
+                 2px -2px 0 #b45309,
+                -2px  2px 0 #b45309,
+                 2px  2px 0 #b45309,
+                 0px 5px 0 #78350f,
+                 0px 10px 15px rgba(0,0,0,0.6);
+        }
+
+        /* Top Right Price Tag */
+        .price-tag {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background: linear-gradient(135deg, #f59e0b, #ea580c);
+            color: white;
+            padding: 30px 40px 50px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+            z-index: 10;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        /* Top Left Badge */
+        .limited-offer {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            color: #dc2626;
+            font-size: 3rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 0 white, -2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 0 5px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        /* Bottom Splash */
+        .bottom-splash {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(to top, rgba(234, 88, 12, 0.9), transparent);
+            z-index: 5;
+        }
+
+        /* Controls UI */
+        .controls {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls mt-8">
+        <h2 class="text-2xl font-bold mb-4 text-slate-800">صانع الإعلانات الاحترافي (Ad Generator)</h2>
+        <p class="text-slate-600 mb-4">قم برفع أي صورة، وسيتم تحويلها تلقائياً إلى إعلان احترافي جاهز لفيسبوك!</p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block font-bold mb-2">ارفع صورة الخلفية:</label>
+                <input type="file" id="imageInput" accept="image/*" class="border p-2 rounded w-full">
+            </div>
+            <div>
+                <label class="block font-bold mb-2">رقم الواتساب:</label>
+                <input type="text" id="phoneInput" value="0600000000" class="border p-2 rounded w-full">
+            </div>
+        </div>
+        
+        <button onclick="downloadAd()" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold w-full hover:bg-blue-700">
+            <i class="fa-solid fa-download"></i> تحميل الإعلان (1080x1080)
+        </button>
+    </div>
+
+    <!-- THE AD CANVAS -->
+    <div class="ad-container" id="adCanvas">
+        <!-- Background Image -->
+        <!-- Default image to show the layout -->
+        <img id="adBg" src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1080&q=80" alt="Background" class="bg-image">
+
+        <!-- Top Left Limited Offer -->
+        <div class="limited-offer">
+            عرض محدود 🔥
+        </div>
+
+        <!-- Top Right Price Tag -->
+        <div class="price-tag flex flex-col items-center">
+            <span class="text-7xl font-black mb-[-10px]">149</span>
+            <span class="text-4xl font-bold">درهم</span>
+            <div class="bg-black text-white px-4 py-1 rounded-full text-2xl font-bold mt-4 shadow-lg border-2 border-white">
+                ثمن الباك
+            </div>
+        </div>
+
+        <!-- Top Center Main Title (3D) -->
+        <div class="absolute top-[80px] left-1/2 transform -translate-x-1/2 z-10 w-full text-center flex flex-col items-center">
+            <div class="bg-gradient-to-b from-blue-600 to-blue-800 border-4 border-yellow-400 rounded-3xl px-12 py-6 shadow-2xl relative">
+                <div class="absolute -top-8 -left-8 text-yellow-400 text-6xl rotate-[-20deg]"><i class="fa-solid fa-bullhorn"></i></div>
+                <h1 class="text-6xl font-black text-3d mb-2">أفضل هدية</h1>
+                <h2 class="text-5xl font-black text-3d">لأطفالك اليوم!</h2>
+            </div>
+        </div>
+
+        <!-- Center Elements (USBs, etc) -->
+        <div class="absolute top-[400px] left-1/2 transform -translate-x-1/2 z-10 flex gap-12 items-center">
+            <div class="bg-white/90 backdrop-blur-sm px-8 py-4 rounded-full border-4 border-orange-500 shadow-2xl">
+                <span class="text-4xl font-black text-orange-600">فلاش ميموري 64GB</span>
+            </div>
+            <div class="text-8xl font-black text-yellow-400 text-shadow-lg drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)]">+</div>
+            <div class="bg-white/90 backdrop-blur-sm px-8 py-4 rounded-full border-4 border-orange-500 shadow-2xl">
+                <span class="text-4xl font-black text-orange-600">بدون أنترنيت</span>
+            </div>
+        </div>
+
+        <!-- Bottom Splash Area -->
+        <div class="bottom-splash"></div>
+
+        <!-- Bottom Right Delivery -->
+        <div class="absolute bottom-[100px] right-[40px] z-10 text-center transform rotate-[-5deg]">
+            <h3 class="text-7xl font-black text-3d-yellow leading-tight">التوصيل<br>مجاني</h3>
+        </div>
+
+        <!-- Bottom Left/Center Gift -->
+        <div class="absolute bottom-[120px] left-[100px] z-10">
+            <i class="fa-solid fa-gift text-[120px] text-red-600 drop-shadow-2xl"></i>
+        </div>
+
+        <!-- Bottom Center WhatsApp Phone -->
+        <div class="absolute bottom-[30px] left-1/2 transform -translate-x-1/2 z-20">
+            <p class="text-center text-white font-bold text-2xl mb-2 drop-shadow-lg">للتواصل عبر الواتساب أو الهاتف</p>
+            <div class="bg-orange-500 rounded-full px-8 py-3 border-4 border-white shadow-2xl flex items-center gap-4">
+                <i class="fa-brands fa-whatsapp text-white text-5xl bg-green-500 rounded-full p-2 border-2 border-white"></i>
+                <span class="text-white text-5xl font-black tracking-wider" id="phoneDisplay">0600000000</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle Image Upload
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('adBg').src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+
+        // Handle Phone Update
+        document.getElementById('phoneInput').addEventListener('input', function(e) {
+            document.getElementById('phoneDisplay').innerText = e.target.value;
+        });
+
+        // Download Ad
+        function downloadAd() {
+            // Temporarily remove scaling to get full 1080x1080 resolution
+            const canvas = document.getElementById('adCanvas');
+            canvas.style.transform = 'scale(1)';
+            
+            html2canvas(canvas, {
+                scale: 1,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null
+            }).then(function(canvasResult) {
+                const link = document.createElement('a');
+                link.download = 'NoorUSB_Ad_Creative.png';
+                link.href = canvasResult.toDataURL('image/png');
+                link.click();
+                
+                // Restore scaling
+                canvas.style.transform = 'scale(0.6)';
+            });
+        }
+    </script>
+</body>
+</html>
