@@ -5,11 +5,11 @@
   --font-inter: 'Inter', sans-serif;
   --font-sans: 'Cairo', 'Inter', sans-serif;
 
-  --color-brand-emerald: #064e3b; /* Deep luxury emerald green */
-  --color-brand-emerald-light: #047857;
-  --color-brand-gold: #f59e0b; /* Metallic warm gold */
-  --color-brand-gold-light: #fbbf24;
-  --color-brand-accent: #10b981; /* Mint accent */
+  --color-darlux-[#0f172a]: #0f172a;
+  --color-darlux-[#1e293b]: #1e293b;
+  --color-darlux-copper: #f48020;
+  --color-darlux-[#d48c6a]: #d48c6a;
+  --color-darlux-[#f97316]: #f97316;
 
   --animate-fade-in: fade-in 1s ease-out;
   --animate-slide-up: slide-up 1s ease-out;
@@ -33,22 +33,14 @@
 
   @keyframes float {
     0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(1deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
     100% { transform: translateY(0px) rotate(0deg); }
   }
 
-  @keyframes neonGlow {
-    0%, 100% {
-      box-shadow: 0 0 15px rgba(245, 158, 11, 0.4), 0 0 30px rgba(245, 158, 11, 0.2);
-    }
-    50% {
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.7), 0 0 45px rgba(245, 158, 11, 0.4);
-    }
-  }
-
-  @keyframes sweep {
-    0% { left: -100%; }
-    100% { left: 200%; }
+  @keyframes animatedCopperBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   @keyframes marquee {
@@ -58,24 +50,24 @@
 }
 
 body {
-  background-color: #022c22;
+  background-color: #0f172a;
   color: #f8fafc;
   font-family: var(--font-cairo), sans-serif;
 }
 
-.gold-gradient-text {
-  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+.copper-gradient-text {
+  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #f48020 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.emerald-glass {
-  background: rgba(6, 78, 59, 0.75);
+.copper-glass {
+  background: rgba(30, 41, 59, 0.85);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(197, 125, 92, 0.3);
 }
 
-/* Neon Animated Checkout Border Frame */
+/* Neon Animated Copper Checkout Border */
 .neon-checkout-card {
   position: relative;
   background: #ffffff;
@@ -88,9 +80,9 @@ body {
   position: absolute;
   inset: -4px;
   border-radius: 2rem;
-  background: linear-gradient(90deg, #10b981, #f59e0b, #059669, #fbbf24, #10b981);
+  background: linear-gradient(90deg, #f97316, #f48020, #eab308, #f97316);
   background-size: 300% 300%;
-  animation: animatedNeonBorder 4s linear infinite;
+  animation: animatedCopperBorder 4s linear infinite;
   z-index: -1;
   filter: blur(6px);
   opacity: 0.85;
@@ -101,33 +93,26 @@ body {
   position: absolute;
   inset: -2px;
   border-radius: 1.85rem;
-  background: linear-gradient(90deg, #10b981, #f59e0b, #059669, #fbbf24, #10b981);
+  background: linear-gradient(90deg, #f97316, #f48020, #eab308, #f97316);
   background-size: 300% 300%;
-  animation: animatedNeonBorder 4s linear infinite;
+  animation: animatedCopperBorder 4s linear infinite;
   z-index: -1;
 }
 
-@keyframes animatedNeonBorder {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Shimmer animation for high-ticket CTA */
-.btn-neon-cta {
+.btn-copper-cta {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #059669 0%, #10b981 50%, #047857 100%);
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.5), 0 0 50px rgba(16, 185, 129, 0.2);
+  background: linear-gradient(135deg, #f48020 0%, #ff9933 50%, #e67300 100%);
+  box-shadow: 0 0 25px rgba(234, 88, 12, 0.5), 0 0 50px rgba(197, 125, 92, 0.2);
   transition: all 0.3s ease;
 }
 
-.btn-neon-cta:hover {
+.btn-copper-cta:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 35px rgba(16, 185, 129, 0.8), 0 0 65px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 35px rgba(234, 88, 12, 0.8), 0 0 65px rgba(245, 158, 11, 0.4);
 }
 
-.btn-neon-cta::after {
+.btn-copper-cta::after {
   content: '';
   position: absolute;
   top: -50%;

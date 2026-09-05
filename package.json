@@ -1,10 +1,10 @@
 {
-  "name": "kids-edu-usb-store",
+  "name": "darlux-rechaud-store",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
@@ -12,7 +12,7 @@
     "@supabase/supabase-js": "^2.103.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "framer-motion": "^12.38.0",
+    "framer-motion": "^11.18.2",
     "html2canvas": "^1.4.1",
     "lucide-react": "^1.8.0",
     "next": "16.2.3",

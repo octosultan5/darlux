@@ -54,7 +54,7 @@ export default function AdGenerator() {
 
   return (
     <div className="min-h-screen bg-slate-100 p-8 rtl font-cairo">
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-lg mb-8 relative z-50">
+      <div className="max-w-4xl mx-auto bg-white p-6 rounded-none shadow-lg mb-8 relative z-50">
         <h2 className="text-3xl font-bold mb-4 text-brand-primary">
           صانع الإعلانات الاحترافي
         </h2>

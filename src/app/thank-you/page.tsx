@@ -22,7 +22,7 @@ export default function ThankYouPage() {
             شكرا لثقتك بنا. سيقوم فريقنا بالاتصال بك قريبا على الرقم الذي قدمته لتأكيد طلبك وتحديد موعد التسليم.
           </p>
 
-          <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 mb-8 text-right flex gap-4 items-start">
+          <div className="bg-blue-50 border border-blue-100 rounded-none p-6 mb-8 text-right flex gap-4 items-start">
             <i className="fa-solid fa-circle-info text-blue-500 text-2xl mt-1"></i>
             <div>
               <h3 className="font-bold text-blue-900 text-lg mb-2">معلومات هامة:</h3>

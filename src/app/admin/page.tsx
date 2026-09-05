@@ -221,7 +221,7 @@ export default function AdminDashboard() {
 
       {/* Analytics Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div className="bg-white p-6 rounded-none shadow-sm border border-slate-100 flex items-center justify-between">
           <div>
             <span className="text-slate-500 text-sm font-medium block mb-1">إجمالي الطلبات</span>
             <span className="text-3xl font-black text-slate-800">{stats.totalOrders}</span>
@@ -231,7 +231,7 @@ export default function AdminDashboard() {
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div className="bg-white p-6 rounded-none shadow-sm border border-slate-100 flex items-center justify-between">
           <div>
             <span className="text-slate-500 text-sm font-medium block mb-1">إجمالي المبيعات (النشطة)</span>
             <span className="text-3xl font-black text-brand-primary">{stats.totalRevenue} د.م</span>
@@ -241,7 +241,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div className="bg-white p-6 rounded-none shadow-sm border border-slate-100 flex items-center justify-between">
           <div>
             <span className="text-slate-500 text-sm font-medium block mb-1">طلبات اليوم</span>
             <span className="text-3xl font-black text-slate-800">{stats.todayOrders}</span>
@@ -251,7 +251,7 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+        <div className="bg-white p-6 rounded-none shadow-sm border border-slate-100 flex items-center justify-between">
           <div>
             <span className="text-slate-500 text-sm font-medium block mb-1">مبيعات اليوم</span>
             <span className="text-3xl font-black text-brand-accent">{stats.todayRevenue} د.م</span>
@@ -263,7 +263,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Status Breakdown Bar */}
-      <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 mb-8 flex flex-wrap gap-4 items-center justify-between text-sm">
+      <div className="bg-white p-4 rounded-none shadow-sm border border-slate-100 mb-8 flex flex-wrap gap-4 items-center justify-between text-sm">
         <span className="font-bold text-slate-700">تفاصيل الحالات:</span>
         <div className="flex flex-wrap gap-4 text-xs">
           <span className="bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full font-bold">
@@ -284,7 +284,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-none shadow-sm border border-slate-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-right">
             <thead className="bg-slate-50 text-slate-500 border-b border-slate-100">
