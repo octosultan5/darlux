@@ -7,35 +7,35 @@ import { motion, AnimatePresence } from "framer-motion";
 const slides = [
   {
     id: 1,
-    title: "فلاشة نور الذكية 64GB",
-    subtitle: "تصميم فاخر باللون الذهبي والزمردي",
-    badge: "الأصلية 100%",
-    image: "/noorusb_hero_usb_3d.png",
-    accentColor: "from-amber-500 to-emerald-600"
+    title: "فلاشة نور للأطفال - تصوير iPhone 16 Pro Max",
+    subtitle: "تجربة واقعية آمنة بدون إعلانات أو إنترنت - 149 درهم فقط",
+    badge: "مصورة بواقعية 📸",
+    image: "/noorusb_iphone16_lifestyle_hero.png",
+    tag: "الأكثر مبيعاً في المغرب 🇲🇦"
   },
   {
     id: 2,
-    title: "باقة التلفزيون والأجهزة الذكية",
-    subtitle: "تعمل مباشرة على التلفاز والتابلت والسيارة",
-    badge: "بدون إنترنت",
-    image: "/noorusb_tv_box_3d.png",
-    accentColor: "from-emerald-500 to-teal-700"
+    title: "عرض خيالي: فلاشة نور 64GB بـ 149 درهم!",
+    subtitle: "أكثر من 1200 فيديو ممتع مصنف في مجلدات إسلامية ولغوية",
+    badge: "149 د.م - خصم 50% 🔥",
+    image: "/noorusb_master_hero_catchy.png",
+    tag: "باقة النور الذهبية"
   },
   {
     id: 3,
-    title: "1200+ فيديو بدون إعلانات",
-    subtitle: "محتوى تعليمي هادف ومصنف في مجلدات سهلة الاستخدام",
-    badge: "محتوى آمن للأطفال",
-    image: "/noorusb_folders_drive_banner.png",
-    accentColor: "from-amber-400 to-orange-600"
+    title: "باقة التلفزيون والأجهزة الذكية",
+    subtitle: "تعمل مباشرة على شاشة التلفاز، التابلت، والسيارة",
+    badge: "بدون إنترنت 📺",
+    image: "/noorusb_tv_box_3d.png",
+    tag: "تشغيل فوري"
   },
   {
     id: 4,
     title: "400+ فيديو لتعليم اللغات",
     subtitle: "العربية، الإنجليزية والفرنسية بأسلوب ممتع ومحفز",
-    badge: "3 لغات عالمية",
+    badge: "3 لغات عالمية 🗣️",
     image: "/noorusb_languages_banner.png",
-    accentColor: "from-teal-400 to-emerald-600"
+    tag: "تعليم تفاعلي"
   }
 ];
 
@@ -45,7 +45,7 @@ export default function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 4500);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
@@ -58,13 +58,13 @@ export default function HeroSection() {
       {/* Dynamic Background Glow Layer */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/40 via-emerald-950/80 to-[#022c22] pointer-events-none" />
 
-      {/* Floating Glowing Orbs */}
+      {/* Floating Ambient Orbs */}
       <div className="absolute top-1/4 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
 
-      <div className="container mx-auto px-4 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center gap-12 pt-6">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center gap-10 pt-4">
         
-        {/* Right Column: High-Ticket Copy & CTA */}
+        {/* Right Column: High-Ticket Direct Response Copy */}
         <div className="w-full lg:w-1/2 text-center lg:text-right flex flex-col justify-center">
           
           <motion.div 
@@ -73,9 +73,9 @@ export default function HeroSection() {
             transition={{ duration: 0.8 }}
             className="flex items-center gap-3 justify-center lg:justify-start mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 font-bold text-xs md:text-sm shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-              الخيار الأول للأسر المحافظة في الجزائر والمغرب 🇲🇦
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 font-bold text-xs md:text-sm shadow-[0_0_20px_rgba(245,158,11,0.25)]">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
+              تخفيض محدود جداً: 149 درهم بدلاً من 299 درهم 🔥
             </span>
           </motion.div>
           
@@ -85,22 +85,22 @@ export default function HeroSection() {
           </h1>
           
           <p className="text-lg sm:text-xl text-emerald-100/90 mb-8 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-            احمِ طفلك من إدمان الهواتف والإعلانات الضارة! أكثر من <span className="text-amber-300 font-bold">1200 فيديو ممتع</span> تشمل قصص الأنبياء، القرآن الكريم، تعلم اللغات، وأناشيد بدون موسيقى.
+            شاهد فرحة طفلك وراحة بالك! تصوير واقعي بجودة <span className="text-amber-300 font-bold">iPhone 16 Pro Max</span> مع أكثر من 1200 فيديو آمن تشمل قصص الأنبياء، القرآن الكريم، واللغات بدون إعلانات.
           </p>
 
-          {/* Value Badges */}
+          {/* Value Badges (Shopify DTC Style) */}
           <div className="grid grid-cols-3 gap-3 mb-8 max-w-lg mx-auto lg:mx-0">
+            <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
+              <span className="block text-2xl mb-1">📸</span>
+              <span className="text-xs font-bold text-emerald-100 block">تصوير واقعي</span>
+            </div>
             <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
               <span className="block text-2xl mb-1">🛡️</span>
               <span className="text-xs font-bold text-emerald-100 block">بدون إنترنت</span>
             </div>
             <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
-              <span className="block text-2xl mb-1">📺</span>
-              <span className="text-xs font-bold text-emerald-100 block">شاشة التلفاز</span>
-            </div>
-            <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
-              <span className="block text-2xl mb-1">⚡</span>
-              <span className="text-xs font-bold text-emerald-100 block">سعة 64GB</span>
+              <span className="block text-2xl mb-1">🏷️</span>
+              <span className="text-xs font-bold text-amber-300 block">149 د.م فقط</span>
             </div>
           </div>
 
@@ -109,22 +109,22 @@ export default function HeroSection() {
               onClick={scrollToCheckout}
               className="w-full sm:w-auto btn-neon-cta text-white text-xl px-10 py-5 rounded-2xl font-black transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3 group"
             >
-              <span>أطلب الآن والدفع عند الاستلام</span>
+              <span>أطلب الآن بـ 149 درهم (الدفع عند الاستلام)</span>
               <i className="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform" />
             </button>
             <a 
               href="#checkout" 
               className="text-amber-300/90 hover:text-amber-200 font-bold text-base px-6 py-4 rounded-xl border border-amber-400/30 hover:border-amber-400/60 transition-all backdrop-blur-sm"
             >
-              شاهد العروض الخاصة 🔥
+              اختر باقتك المفضلة 🔥
             </a>
           </div>
 
         </div>
 
-        {/* Left Column: Animated Catchy Slide Showcase */}
+        {/* Left Column: iPhone 16 Pro Max Lifestyle Showcase Card */}
         <div className="w-full lg:w-1/2 relative">
-          <div className="relative w-full aspect-[4/3] max-w-[560px] mx-auto rounded-3xl p-2 bg-gradient-to-br from-amber-400/30 via-emerald-500/20 to-amber-500/30 shadow-[0_0_50px_rgba(6,78,59,0.8)] backdrop-blur-xl border border-amber-400/40">
+          <div className="relative w-full aspect-[4/3] max-w-[590px] mx-auto rounded-3xl p-2 bg-gradient-to-br from-amber-400/40 via-emerald-500/30 to-amber-500/40 shadow-[0_0_60px_rgba(6,78,59,0.9)] backdrop-blur-xl border-2 border-amber-400/50">
             
             {/* Inner Container */}
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#022c22]/90 flex items-center justify-center">
@@ -143,30 +143,35 @@ export default function HeroSection() {
                     alt={slides[activeSlide].title}
                     fill
                     priority
-                    quality={95}
-                    className="object-contain p-4 drop-shadow-[0_15px_35px_rgba(0,0,0,0.7)]"
+                    quality={100}
+                    className="object-cover p-1 rounded-xl drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
                   />
 
-                  {/* Top Badge */}
-                  <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs px-3 py-1.5 rounded-full shadow-lg border border-amber-200">
+                  {/* Top Badge Pill */}
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs md:text-sm px-4 py-1.5 rounded-full shadow-xl border border-amber-200 animate-pulse">
                     {slides[activeSlide].badge}
+                  </div>
+
+                  {/* Floating Tag */}
+                  <div className="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md text-amber-300 font-bold text-xs px-3.5 py-1.5 rounded-full border border-amber-400/30">
+                    {slides[activeSlide].tag}
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              {/* Overlay Slide Info Bar */}
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#021812] via-[#021812]/90 to-transparent p-5 text-right pt-10">
-                <h3 className="text-xl font-black text-amber-300 drop-shadow-sm mb-1">
+              {/* Overlay Slide Info Bar (Shopify Store Style) */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#01140f] via-[#01140f]/90 to-transparent p-5 text-right pt-12">
+                <h3 className="text-lg md:text-xl font-black text-amber-300 drop-shadow-sm mb-1">
                   {slides[activeSlide].title}
                 </h3>
-                <p className="text-xs text-emerald-100/80 font-medium">
+                <p className="text-xs text-emerald-100/90 font-medium">
                   {slides[activeSlide].subtitle}
                 </p>
               </div>
 
             </div>
 
-            {/* Interactive Slide Controls & Navigation Tabs */}
+            {/* Interactive Slide Navigation Controls */}
             <div className="flex justify-center items-center gap-2 mt-4">
               {slides.map((slide, index) => (
                 <button
