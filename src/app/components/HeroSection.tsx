@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -41,6 +41,7 @@ const slides = [
 
 export default function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -53,68 +54,142 @@ export default function HeroSection() {
     document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Touch Swipe Handlers for Mobile Devices
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX;
+
+    if (diff > 50) {
+      // Swiped Left
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    } else if (diff < -50) {
+      // Swiped Right
+      setActiveSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    }
+    touchStartX.current = null;
+  };
+
   return (
-    <section className="relative w-full min-h-[92vh] py-12 lg:py-20 flex items-center justify-center overflow-hidden rtl bg-gradient-to-b from-[#011b15] via-[#022c22] to-[#064e3b]">
+    <section className="relative w-full min-h-[90vh] py-8 sm:py-16 lg:py-20 flex items-center justify-center overflow-hidden rtl bg-gradient-to-b from-[#011b15] via-[#022c22] to-[#064e3b]">
       {/* Dynamic Background Glow Layer */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/40 via-emerald-950/80 to-[#022c22] pointer-events-none" />
 
       {/* Floating Ambient Orbs */}
-      <div className="absolute top-1/4 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
+      <div className="absolute top-1/4 right-10 w-72 sm:w-96 h-72 sm:h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-72 sm:w-96 h-72 sm:h-96 bg-emerald-500/15 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
 
-      <div className="container mx-auto px-4 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center gap-10 pt-4">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center gap-8 sm:gap-12 pt-2 sm:pt-4">
         
-        {/* Right Column: High-Ticket Direct Response Copy */}
+        {/* Right Column: High-Ticket Mobile First Copy */}
         <div className="w-full lg:w-1/2 text-center lg:text-right flex flex-col justify-center">
           
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex items-center gap-3 justify-center lg:justify-start mb-6"
+            className="flex items-center gap-3 justify-center lg:justify-start mb-4 sm:mb-6"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 font-bold text-xs md:text-sm shadow-[0_0_20px_rgba(245,158,11,0.25)]">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(245,158,11,0.25)]">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
-              تخفيض محدود جداً: 149 درهم بدلاً من 299 درهم 🔥
+              تخفيض خاص اليوم: 149 درهم بدلاً من 299 درهم 🔥
             </span>
           </motion.div>
           
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-6">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.2] sm:leading-[1.15] mb-4 sm:mb-6">
             أروع هدية تعليمية لطفلك <br className="hidden sm:inline" />
-            <span className="gold-gradient-text drop-shadow-md">فلاشة نور الذهبية 64GB</span>
+            <span className="gold-gradient-text drop-shadow-md block sm:inline mt-1 sm:mt-0">فلاشة نور الذهبية 64GB</span>
           </h1>
+
+          {/* MOBILE ONLY: Featured Image Showcase placed right under headline for mobile conversion */}
+          <div className="block lg:hidden w-full my-4">
+            <div 
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              className="relative w-full aspect-[4/3] max-w-[480px] mx-auto rounded-2xl p-1.5 bg-gradient-to-br from-amber-400/40 via-emerald-500/30 to-amber-500/40 shadow-2xl backdrop-blur-xl border border-amber-400/40"
+            >
+              <div className="relative w-full h-full rounded-xl overflow-hidden bg-[#022c22]/90 flex items-center justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeSlide}
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.04 }}
+                    transition={{ duration: 0.4 }}
+                    className="relative w-full h-full"
+                  >
+                    <Image
+                      src={slides[activeSlide].image}
+                      alt={slides[activeSlide].title}
+                      fill
+                      priority
+                      quality={95}
+                      className="object-cover rounded-lg"
+                    />
+
+                    <div className="absolute top-3 right-3 bg-amber-500 text-slate-950 font-black text-[11px] px-3 py-1 rounded-full shadow-md">
+                      {slides[activeSlide].badge}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#01140f] via-[#01140f]/90 to-transparent p-3 text-right pt-8">
+                  <h3 className="text-sm font-black text-amber-300">
+                    {slides[activeSlide].title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Mobile Slide Dots */}
+              <div className="flex justify-center items-center gap-1.5 mt-3 mb-1">
+                {slides.map((slide, index) => (
+                  <button
+                    key={slide.id}
+                    onClick={() => setActiveSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      activeSlide === index ? "w-6 bg-amber-400" : "w-2 bg-emerald-700"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
           
-          <p className="text-lg sm:text-xl text-emerald-100/90 mb-8 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-            شاهد فرحة طفلك وراحة بالك! تصوير واقعي بجودة <span className="text-amber-300 font-bold">iPhone 16 Pro Max</span> مع أكثر من 1200 فيديو آمن تشمل قصص الأنبياء، القرآن الكريم، واللغات بدون إعلانات.
+          <p className="text-base sm:text-xl text-emerald-100/90 mb-6 sm:mb-8 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
+            شاهد فرحة طفلك وراحة بالك! تصوير واقعي بجودة <span className="text-amber-300 font-bold">iPhone 16 Pro Max</span> مع أكثر من 1200 فيديو آمن تشمل قصص الأنبياء والقرآن الكريم بدون إعلانات.
           </p>
 
-          {/* Value Badges (Shopify DTC Style) */}
-          <div className="grid grid-cols-3 gap-3 mb-8 max-w-lg mx-auto lg:mx-0">
-            <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
-              <span className="block text-2xl mb-1">📸</span>
-              <span className="text-xs font-bold text-emerald-100 block">تصوير واقعي</span>
+          {/* Value Badges (Shopify DTC Mobile Responsive) */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0">
+            <div className="emerald-glass p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-center border border-amber-500/20 shadow-md">
+              <span className="block text-xl sm:text-2xl mb-0.5">📸</span>
+              <span className="text-[11px] sm:text-xs font-bold text-emerald-100 block">تصوير واقعي</span>
             </div>
-            <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
-              <span className="block text-2xl mb-1">🛡️</span>
-              <span className="text-xs font-bold text-emerald-100 block">بدون إنترنت</span>
+            <div className="emerald-glass p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-center border border-amber-500/20 shadow-md">
+              <span className="block text-xl sm:text-2xl mb-0.5">🛡️</span>
+              <span className="text-[11px] sm:text-xs font-bold text-emerald-100 block">بدون إنترنت</span>
             </div>
-            <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
-              <span className="block text-2xl mb-1">🏷️</span>
-              <span className="text-xs font-bold text-amber-300 block">149 د.م فقط</span>
+            <div className="emerald-glass p-2.5 sm:p-3 rounded-xl sm:rounded-2xl text-center border border-amber-500/20 shadow-md">
+              <span className="block text-xl sm:text-2xl mb-0.5">🏷️</span>
+              <span className="text-[11px] sm:text-xs font-bold text-amber-300 block">149 د.م فقط</span>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center">
             <button 
               onClick={scrollToCheckout}
-              className="w-full sm:w-auto btn-neon-cta text-white text-xl px-10 py-5 rounded-2xl font-black transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3 group"
+              className="w-full sm:w-auto btn-neon-cta text-white text-lg sm:text-xl px-8 py-4 sm:py-5 rounded-xl sm:rounded-2xl font-black transition-all shadow-[0_0_25px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3 group"
             >
               <span>أطلب الآن بـ 149 درهم (الدفع عند الاستلام)</span>
               <i className="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform" />
             </button>
             <a 
               href="#checkout" 
-              className="text-amber-300/90 hover:text-amber-200 font-bold text-base px-6 py-4 rounded-xl border border-amber-400/30 hover:border-amber-400/60 transition-all backdrop-blur-sm"
+              className="w-full sm:w-auto text-amber-300/90 hover:text-amber-200 font-bold text-sm sm:text-base px-6 py-3.5 sm:py-4 rounded-xl border border-amber-400/30 hover:border-amber-400/60 transition-all backdrop-blur-sm text-center"
             >
               اختر باقتك المفضلة 🔥
             </a>
@@ -122,9 +197,13 @@ export default function HeroSection() {
 
         </div>
 
-        {/* Left Column: iPhone 16 Pro Max Lifestyle Showcase Card */}
-        <div className="w-full lg:w-1/2 relative">
-          <div className="relative w-full aspect-[4/3] max-w-[590px] mx-auto rounded-3xl p-2 bg-gradient-to-br from-amber-400/40 via-emerald-500/30 to-amber-500/40 shadow-[0_0_60px_rgba(6,78,59,0.9)] backdrop-blur-xl border-2 border-amber-400/50">
+        {/* DESKTOP ONLY: iPhone 16 Pro Max Lifestyle Showcase Card */}
+        <div className="hidden lg:block w-full lg:w-1/2 relative">
+          <div 
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            className="relative w-full aspect-[4/3] max-w-[590px] mx-auto rounded-3xl p-2 bg-gradient-to-br from-amber-400/40 via-emerald-500/30 to-amber-500/40 shadow-[0_0_60px_rgba(6,78,59,0.9)] backdrop-blur-xl border-2 border-amber-400/50"
+          >
             
             {/* Inner Container */}
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#022c22]/90 flex items-center justify-center">
