@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Cairo } from "next/font/google";
 import "./globals.css";
 import Pixels from "./components/Pixels";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const cairo = Cairo({ subsets: ["arabic"], variable: "--font-cairo" });
 
 export const metadata: Metadata = {
   title: "NoorUSB - المكتبة الذكية لطفلك",
@@ -20,8 +16,11 @@ export default function RootLayout({
     <html lang="ar" className="scroll-smooth" dir="rtl">
       <head>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:wght@100..900&display=swap" rel="stylesheet" />
       </head>
-      <body className={`${inter.variable} ${cairo.variable} font-sans min-h-screen bg-slate-50 antialiased`}>
+      <body className="font-sans min-h-screen bg-slate-50 antialiased">
         <Pixels />
         {children}
       </body>

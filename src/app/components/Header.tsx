@@ -1,6 +1,8 @@
 "use client";
 
 export default function Header() {
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "212600000000";
+
   const scrollToCheckout = () => {
     document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -22,7 +24,7 @@ export default function Header() {
         {/* Action Area */}
         <div className="flex flex-col sm:flex-row gap-3">
           <a
-            href="https://wa.me/212600000000"
+            href={`https://wa.me/${whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex text-brand-green font-bold items-center gap-2 px-4 py-2 rounded-full border-2 border-brand-green hover:bg-emerald-50 transition-colors"

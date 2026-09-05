@@ -9,6 +9,26 @@ export async function submitOrder(orderData: any) {
     const forwardedFor = headersList.get("x-forwarded-for");
     const ip = forwardedFor ? forwardedFor.split(",")[0] : "unknown";
 
+    // Check if IP is blocked in Supabase
+    if (ip !== "unknown") {
+      try {
+        const { data: isBlocked } = await supabase
+          .from("blocked_ips")
+          .select("ip_address")
+          .eq("ip_address", ip)
+          .maybeSingle();
+
+        if (isBlocked) {
+          console.warn(`Order from blocked IP ${ip} shadow-banned.`);
+          // Shadow ban: pretend it succeeded so the spammer doesn't bypass it
+          return { success: true, data: { id: "shadow-blocked", ...orderData } };
+        }
+      } catch (dbErr) {
+        // Log error and continue if the blocked_ips table doesn't exist yet or has schema mismatch
+        console.error("IP Block Check Error (continuing):", dbErr);
+      }
+    }
+
     // 1. Optional: Add your Google Sheets Webhook URL here if you want direct sync
     const GOOGLE_SHEETS_WEBHOOK = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK;
     
