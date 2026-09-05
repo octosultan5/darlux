@@ -1,162 +1,191 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+
+const slides = [
+  {
+    id: 1,
+    title: "فلاشة نور الذكية 64GB",
+    subtitle: "تصميم فاخر باللون الذهبي والزمردي",
+    badge: "الأصلية 100%",
+    image: "/noorusb_hero_usb_3d.png",
+    accentColor: "from-amber-500 to-emerald-600"
+  },
+  {
+    id: 2,
+    title: "باقة التلفزيون والأجهزة الذكية",
+    subtitle: "تعمل مباشرة على التلفاز والتابلت والسيارة",
+    badge: "بدون إنترنت",
+    image: "/noorusb_tv_box_3d.png",
+    accentColor: "from-emerald-500 to-teal-700"
+  },
+  {
+    id: 3,
+    title: "1200+ فيديو بدون إعلانات",
+    subtitle: "محتوى تعليمي هادف ومصنف في مجلدات سهلة الاستخدام",
+    badge: "محتوى آمن للأطفال",
+    image: "/noorusb_folders_drive_banner.png",
+    accentColor: "from-amber-400 to-orange-600"
+  },
+  {
+    id: 4,
+    title: "400+ فيديو لتعليم اللغات",
+    subtitle: "العربية، الإنجليزية والفرنسية بأسلوب ممتع ومحفز",
+    badge: "3 لغات عالمية",
+    image: "/noorusb_languages_banner.png",
+    accentColor: "from-teal-400 to-emerald-600"
+  }
+];
 
 export default function HeroSection() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
+
   const scrollToCheckout = () => {
     document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const lineVariants: any = {
-    hidden: { y: 100, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.8 } }
-  };
-
   return (
-    <section className="relative w-full h-[90vh] lg:h-screen min-h-[650px] flex items-center justify-center overflow-hidden rtl bg-[#0a0a0a]">
-      {/* Background Image with Slow Parallax Overlay */}
-      <motion.div 
-        initial={{ scale: 1 }}
-        animate={{ scale: 1.1 }}
-        transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" as const }}
-        className="absolute inset-0 w-full h-full"
-      >
-        <Image 
-          src="/hero.png" 
-          alt="NoorUSB Premium Background" 
-          fill
-          priority
-          quality={100}
-          className="object-cover opacity-[0.15] mix-blend-luminosity filter contrast-125"
-        />
-      </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent pointer-events-none"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent pointer-events-none"></div>
+    <section className="relative w-full min-h-[92vh] py-12 lg:py-20 flex items-center justify-center overflow-hidden rtl bg-gradient-to-b from-[#011b15] via-[#022c22] to-[#064e3b]">
+      {/* Dynamic Background Glow Layer */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/40 via-emerald-950/80 to-[#022c22] pointer-events-none" />
 
-      {/* Animated Geometric Slashes (Rifmachine Style) */}
-      <motion.div 
-        initial={{ x: "-100%" }}
-        animate={{ x: 0 }}
-        transition={{ duration: 1.2 }}
-        className="absolute top-0 right-0 w-full h-full pointer-events-none z-0"
-      >
-        {/* Right side primary slash */}
-        <div className="absolute top-[-20%] right-[15%] w-[150%] h-[150%] bg-[#1e3a8a]/5 origin-bottom-right transform -rotate-[15deg] border-l border-[#1e3a8a]/20 backdrop-blur-[2px]"></div>
-        <div className="absolute top-[-30%] right-[30%] w-[100%] h-[150%] bg-[#F29B61]/5 origin-bottom-right transform -rotate-[15deg] border-l border-[#F29B61]/10 backdrop-blur-[4px]"></div>
-      </motion.div>
-      
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 0.3 }}
-        className="absolute bottom-0 left-0 w-full h-full pointer-events-none z-0"
-      >
-        {/* Left corner accent triangle */}
-        <svg viewBox="0 0 300 300" fill="none" className="absolute bottom-0 left-0 w-[40vw] max-w-[400px] h-auto opacity-10">
-          <polygon points="0,300 300,300 0,0" fill="#F29B61"/>
-        </svg>
-      </motion.div>
+      {/* Floating Glowing Orbs */}
+      <div className="absolute top-1/4 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
 
-      <div className="container mx-auto px-5 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center h-full pt-20">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10 flex flex-col lg:flex-row items-center gap-12 pt-6">
         
-        {/* Text Content */}
-        <div className="w-full lg:w-3/5 text-center lg:text-right flex flex-col justify-center">
+        {/* Right Column: High-Ticket Copy & CTA */}
+        <div className="w-full lg:w-1/2 text-center lg:text-right flex flex-col justify-center">
           
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex items-center gap-4 mb-6 justify-center lg:justify-start"
+            transition={{ duration: 0.8 }}
+            className="flex items-center gap-3 justify-center lg:justify-start mb-6"
           >
-            <span className="w-12 h-[2px] bg-[#F29B61] block"></span>
-            <span className="text-white/80 font-bold tracking-widest text-sm md:text-base uppercase">المنتج رقم 1 في تعليم الأطفال</span>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 font-bold text-xs md:text-sm shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+              الخيار الأول للأسر المحافظة في الجزائر والمغرب 🇲🇦
+            </span>
           </motion.div>
           
-          <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-black text-white leading-[1.1] mb-8 py-2">
-            <motion.div className="overflow-hidden mb-2">
-              <motion.span variants={lineVariants} initial="hidden" animate="visible" className="block">
-                أروع هدية لطفلك
-              </motion.span>
-            </motion.div>
-            <motion.div className="overflow-hidden mb-2">
-              <motion.span variants={lineVariants} initial="hidden" animate="visible" transition={{ delay: 0.1, duration: 0.8 }} className="block text-[#F29B61]">
-                في 2026
-              </motion.span>
-            </motion.div>
-            <motion.div className="overflow-hidden mt-4">
-              <motion.span variants={lineVariants} initial="hidden" animate="visible" transition={{ delay: 0.2, duration: 0.8 }} className="block text-[0.6em] text-white/90">
-                مكتبة ذكية في جيبك!
-              </motion.span>
-            </motion.div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] mb-6">
+            أروع هدية تعليمية لطفلك <br className="hidden sm:inline" />
+            <span className="gold-gradient-text drop-shadow-md">فلاشة نور الذهبية 64GB</span>
           </h1>
           
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg md:text-2xl text-white/60 mb-10 leading-relaxed font-medium max-w-2xl mx-auto lg:mx-0"
-          >
-            أكثر من 2000 فيديو تعليمي، قصص الأنبياء، تعلم اللغات، وأناشيد بدون موسيقى. كل هذا في فلاش ميموري واحدة بحجم 64 جيجا.
-          </motion.p>
+          <p className="text-lg sm:text-xl text-emerald-100/90 mb-8 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
+            احمِ طفلك من إدمان الهواتف والإعلانات الضارة! أكثر من <span className="text-amber-300 font-bold">1200 فيديو ممتع</span> تشمل قصص الأنبياء، القرآن الكريم، تعلم اللغات، وأناشيد بدون موسيقى.
+          </p>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center"
-          >
+          {/* Value Badges */}
+          <div className="grid grid-cols-3 gap-3 mb-8 max-w-lg mx-auto lg:mx-0">
+            <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
+              <span className="block text-2xl mb-1">🛡️</span>
+              <span className="text-xs font-bold text-emerald-100 block">بدون إنترنت</span>
+            </div>
+            <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
+              <span className="block text-2xl mb-1">📺</span>
+              <span className="text-xs font-bold text-emerald-100 block">شاشة التلفاز</span>
+            </div>
+            <div className="emerald-glass p-3 rounded-2xl text-center border border-amber-500/20 shadow-lg">
+              <span className="block text-2xl mb-1">⚡</span>
+              <span className="text-xs font-bold text-emerald-100 block">سعة 64GB</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
             <button 
               onClick={scrollToCheckout}
-              className="bg-[#F29B61] text-white hover:bg-orange-500 text-xl flex items-center justify-center gap-3 px-10 py-4 font-black transition-all shadow-[0_0_20px_rgba(242,155,97,0.3)] hover:shadow-[0_0_40px_rgba(242,155,97,0.5)]"
+              className="w-full sm:w-auto btn-neon-cta text-white text-xl px-10 py-5 rounded-2xl font-black transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)] flex items-center justify-center gap-3 group"
             >
-              اطلب الآن والدفع عند الاستلام <i className="fa-solid fa-cart-shopping"></i>
+              <span>أطلب الآن والدفع عند الاستلام</span>
+              <i className="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform" />
             </button>
-            <a href="#checkout-top" className="text-white/70 hover:text-white font-bold text-lg transition-colors flex items-center gap-2 border border-white/20 hover:border-white px-8 py-4">
-              اكتشف المزيد
+            <a 
+              href="#checkout" 
+              className="text-amber-300/90 hover:text-amber-200 font-bold text-base px-6 py-4 rounded-xl border border-amber-400/30 hover:border-amber-400/60 transition-all backdrop-blur-sm"
+            >
+              شاهد العروض الخاصة 🔥
             </a>
-          </motion.div>
+          </div>
 
         </div>
 
-        {/* Hero Image (Foreground Floating) */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1.2, delay: 0.4 }}
-          className="w-full lg:w-2/5 relative mt-12 lg:mt-0 hidden md:block"
-        >
-          <div className="relative w-full aspect-square max-w-[450px] mx-auto">
-            {/* Dark Glow behind image */}
-            <div className="absolute inset-0 bg-[#F29B61]/20 rounded-full blur-[100px] animate-pulse-slow"></div>
-            <Image 
-              src="/product.png" 
-              alt="NoorUSB Product" 
-              fill
-              className="object-contain relative z-10 animate-float drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-            />
+        {/* Left Column: Animated Catchy Slide Showcase */}
+        <div className="w-full lg:w-1/2 relative">
+          <div className="relative w-full aspect-[4/3] max-w-[560px] mx-auto rounded-3xl p-2 bg-gradient-to-br from-amber-400/30 via-emerald-500/20 to-amber-500/30 shadow-[0_0_50px_rgba(6,78,59,0.8)] backdrop-blur-xl border border-amber-400/40">
+            
+            {/* Inner Container */}
+            <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[#022c22]/90 flex items-center justify-center">
+              
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSlide}
+                  initial={{ opacity: 0, scale: 0.92, rotate: -1 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 1.05, rotate: 1 }}
+                  transition={{ duration: 0.6 }}
+                  className="relative w-full h-full flex items-center justify-center"
+                >
+                  <Image
+                    src={slides[activeSlide].image}
+                    alt={slides[activeSlide].title}
+                    fill
+                    priority
+                    quality={95}
+                    className="object-contain p-4 drop-shadow-[0_15px_35px_rgba(0,0,0,0.7)]"
+                  />
+
+                  {/* Top Badge */}
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xs px-3 py-1.5 rounded-full shadow-lg border border-amber-200">
+                    {slides[activeSlide].badge}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Overlay Slide Info Bar */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#021812] via-[#021812]/90 to-transparent p-5 text-right pt-10">
+                <h3 className="text-xl font-black text-amber-300 drop-shadow-sm mb-1">
+                  {slides[activeSlide].title}
+                </h3>
+                <p className="text-xs text-emerald-100/80 font-medium">
+                  {slides[activeSlide].subtitle}
+                </p>
+              </div>
+
+            </div>
+
+            {/* Interactive Slide Controls & Navigation Tabs */}
+            <div className="flex justify-center items-center gap-2 mt-4">
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  onClick={() => setActiveSlide(index)}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    activeSlide === index 
+                      ? "w-8 bg-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.8)]" 
+                      : "w-2.5 bg-emerald-700/60 hover:bg-emerald-500"
+                  }`}
+                  aria-label={`Slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
           </div>
-        </motion.div>
+        </div>
 
       </div>
-
-      {/* Animated Scroll Hint (Rifmachine Bottom Left Style) */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 right-8 md:right-12 flex items-center gap-4 cursor-pointer z-20"
-        onClick={scrollToCheckout}
-      >
-        <span className="text-white/40 text-xs tracking-[0.2em] font-bold">دحرج للأسفل</span>
-        <div className="w-16 h-[2px] bg-white/10 relative overflow-hidden">
-          <motion.div 
-            animate={{ x: [64, -64] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="absolute top-0 right-0 w-1/2 h-full bg-[#F29B61]"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }

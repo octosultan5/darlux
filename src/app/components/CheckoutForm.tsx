@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { submitOrder } from "../actions/order";
 
@@ -9,13 +9,28 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
     const [bundle, setBundle] = useState<number>(2);
     const [orderBump, setOrderBump] = useState<boolean>(false);
     
+    // Countdown Timer (14 mins 59 secs)
+    const [timeLeft, setTimeLeft] = useState({ minutes: 14, seconds: 59 });
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTimeLeft((prev) => {
+                if (prev.seconds > 0) {
+                    return { ...prev, seconds: prev.seconds - 1 };
+                } else if (prev.minutes > 0) {
+                    return { minutes: prev.minutes - 1, seconds: 59 };
+                }
+                return prev;
+            });
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
     // Pricing logic
-    let price = 249;
-    if (bundle === 1) price = 249; // 1 USB
-    if (bundle === 2) price = 399; // 2 USBs
-    if (bundle === 3) price = 549; // 3 USBs
-    
-    if (orderBump) price += 99; // Add bump price
+    let price = 399; // Default bundle 2
+    if (bundle === 1) price = 249;
+    if (bundle === 3) price = 549;
+    if (orderBump) price += 99;
 
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -27,7 +42,6 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
         e.preventDefault();
         setError("");
 
-        // Basic Moroccan phone validation (06 or 07 followed by 8 digits)
         const cleanPhone = phone.replace(/\s/g, "");
         if (!/^(06|07)\d{8}$/.test(cleanPhone)) {
             setError("المرجو إدخال رقم هاتف صحيح يتكون من 10 أرقام ويبدأ بـ 06 أو 07");
@@ -37,13 +51,11 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
         setIsSubmitting(true);
 
         try {
-            // Price calculation fallback just to be sure
             let finalPrice = 399;
             if (bundle === 1) finalPrice = 249;
             if (bundle === 3) finalPrice = 549;
             if (orderBump) finalPrice += 99;
 
-            // Call the secure Server Action
             const result = await submitOrder({
                 name,
                 phone: cleanPhone,
@@ -59,7 +71,6 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                 return;
             }
 
-            // Redirect smoothly
             router.push("/thank-you");
         } catch (err) {
             console.error(err);
@@ -70,128 +81,209 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
     };
 
     return (
-        <section className="bg-brand-primary text-white py-20 relative rtl" id={id}>
-            {/* Wave Divider */}
-            <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0] transform -translate-y-full">
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-[40px] fill-brand-primary">
-                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-                </svg>
-            </div>
+        <section className="bg-gradient-to-b from-[#022c22] via-[#064e3b] to-[#011b15] text-white py-16 lg:py-24 relative rtl" id={id}>
+            
+            <div className="container mx-auto px-4 max-w-5xl relative z-10">
+                
+                {/* Header Title */}
+                <div className="text-center mb-10">
+                    <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 font-bold text-sm mb-4 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                        <span>⚡ التوصيل مجاني 100% والدفع بعد المعاينة عند الاستلام 🇲🇦</span>
+                    </div>
 
-            <div className="container mx-auto px-5 max-w-5xl">
-                <div className="text-center mb-8">
-                    <h2 className="text-4xl md:text-5xl font-black mb-4">أطلب الآن وادفع عند الاستلام</h2>
-                    <p className="text-xl text-brand-accent font-bold mb-4">التوصيل مجاني لجميع مدن المغرب 🇲🇦</p>
-                    
-                    {/* Urgency Element */}
-                    <div className="inline-block bg-red-100 border border-red-200 text-red-700 px-6 py-2 rounded-full font-bold animate-pulse-slow">
-                        <i className="fa-solid fa-fire mr-2"></i> سارع بالطلب! الكمية المتبقية: <span className="text-xl">4</span> قطع فقط
+                    <h2 className="text-3xl md:text-5xl font-black mb-3">
+                        استفد من <span className="gold-gradient-text">العرض الخاص قبل انتهاء الوقت</span>
+                    </h2>
+
+                    {/* Countdown Urgency Timer */}
+                    <div className="flex justify-center items-center gap-3 mt-4">
+                        <div className="bg-slate-950/80 border border-amber-400/40 px-4 py-2 rounded-xl text-amber-300 font-mono font-black text-lg flex items-center gap-2 shadow-lg">
+                            <i className="fa-solid fa-clock animate-pulse text-amber-400" />
+                            <span>ينتهي العرض خلال: </span>
+                            <span className="text-white text-xl">
+                                {String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+                            </span>
+                        </div>
+                        <div className="bg-red-500/20 border border-red-500/40 text-red-300 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2">
+                            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
+                            متبقي 4 قطع فقط
+                        </div>
                     </div>
                 </div>
 
-                <div className="bg-white text-slate-800 rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+                {/* Animated Neon Checkout Card Container */}
+                <div className="neon-checkout-card shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col lg:flex-row text-slate-900">
                     
-                    <div className="w-full lg:w-1/2 p-8 md:p-12 order-2 lg:order-1 relative">
-                        <form onSubmit={handleSubmit} className="space-y-5">
+                    {/* Customer Form (Left/Order 2) */}
+                    <div className="w-full lg:w-1/2 p-6 md:p-10 order-2 lg:order-1 bg-white relative">
+                        <h3 className="text-xl font-black mb-6 text-emerald-950 flex items-center gap-2 border-b pb-3 border-slate-100">
+                            <i className="fa-solid fa-user-pen text-amber-500" />
+                            <span>أدخل معلومات التوصيل:</span>
+                        </h3>
+
+                        <form onSubmit={handleSubmit} className="space-y-4">
                             {error && (
-                                <div className="bg-red-50 text-red-600 border border-red-200 rounded-xl p-4 text-sm font-bold text-center">
+                                <div className="bg-red-50 text-red-600 border border-red-200 rounded-xl p-4 text-sm font-bold text-center animate-shake">
                                     {error}
                                 </div>
                             )}
+
                             <div>
-                                <input type="text" placeholder="الاسم الكامل" required value={name} onChange={e => setName(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-lg focus:border-brand-accent focus:outline-none" />
-                            </div>
-                            <div>
-                                <input type="tel" placeholder="رقم الهاتف (06..)" dir="ltr" required value={phone} onChange={e => setPhone(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-lg focus:border-brand-accent focus:outline-none text-right" />
-                            </div>
-                            <div>
-                                <input type="text" placeholder="المدينة" required value={city} onChange={e => setCity(e.target.value)} className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-5 py-4 text-lg focus:border-brand-accent focus:outline-none" />
+                                <label className="block text-xs font-bold text-slate-600 mb-1">الاسم الكامل</label>
+                                <input 
+                                    type="text" 
+                                    placeholder="مثال: محمد العلوي" 
+                                    required 
+                                    value={name} 
+                                    onChange={e => setName(e.target.value)} 
+                                    className="w-full bg-slate-50 border-2 border-slate-200 focus:border-amber-500 focus:bg-white rounded-xl px-4 py-3.5 text-base focus:outline-none transition-all font-medium" 
+                                />
                             </div>
 
-                            <button type="submit" disabled={isSubmitting} className="w-full btn-primary neon-frame mt-6 text-2xl flex items-center justify-center gap-3">
-                                {isSubmitting ? "جاري الإرسال..." : "تأكيد الطلب"} <i className="fa-solid fa-paper-plane"></i>
+                            <div>
+                                <label className="block text-xs font-bold text-slate-600 mb-1">رقم الهاتف (واتساب)</label>
+                                <input 
+                                    type="tel" 
+                                    placeholder="06XXXXXXXX" 
+                                    dir="ltr" 
+                                    required 
+                                    value={phone} 
+                                    onChange={e => setPhone(e.target.value)} 
+                                    className="w-full bg-slate-50 border-2 border-slate-200 focus:border-amber-500 focus:bg-white rounded-xl px-4 py-3.5 text-base focus:outline-none text-right transition-all font-medium" 
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-xs font-bold text-slate-600 mb-1">المدينة / العنوان</label>
+                                <input 
+                                    type="text" 
+                                    placeholder="مثال: الدار البيضاء، حي السلام" 
+                                    required 
+                                    value={city} 
+                                    onChange={e => setCity(e.target.value)} 
+                                    className="w-full bg-slate-50 border-2 border-slate-200 focus:border-amber-500 focus:bg-white rounded-xl px-4 py-3.5 text-base focus:outline-none transition-all font-medium" 
+                                />
+                            </div>
+
+                            {/* Submit Button with Neon Shimmer Animation */}
+                            <button 
+                                type="submit" 
+                                disabled={isSubmitting} 
+                                className="w-full btn-neon-cta text-white text-xl py-4 rounded-xl font-black flex items-center justify-center gap-3 mt-6 shadow-xl"
+                            >
+                                {isSubmitting ? (
+                                    <span className="flex items-center gap-2">
+                                        <i className="fa-solid fa-spinner animate-spin" /> جاري تأكيد طلبك...
+                                    </span>
+                                ) : (
+                                    <>
+                                        <span>تأكيد الطلب الآن (الدفع عند الاستلام)</span>
+                                        <i className="fa-solid fa-check-circle text-amber-300" />
+                                    </>
+                                )}
                             </button>
                             
-                            <p className="text-center text-slate-500 font-bold mt-4 text-sm">
-                                <i className="fa-solid fa-lock text-brand-green mr-1"></i> معلوماتك آمنة ولن يتم مشاركتها.
-                            </p>
+                            <div className="flex items-center justify-center gap-4 text-xs font-bold text-slate-500 mt-4 pt-2 border-t border-slate-100">
+                                <span className="flex items-center gap-1">
+                                    <i className="fa-solid fa-[#059669] fa-shield-halved text-emerald-600" /> ضمان الجودة 100%
+                                </span>
+                                <span className="flex items-center gap-1">
+                                    <i className="fa-solid fa-[#059669] fa-truck-fast text-emerald-600" /> توصيل سريع وسري
+                                </span>
+                            </div>
                         </form>
                     </div>
 
-                    {/* Offers Section */}
-                    <div className="w-full lg:w-1/2 bg-slate-50 p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-slate-200 order-1 lg:order-2">
-                        <h3 className="text-2xl font-black mb-6 text-brand-primary text-center lg:text-right">اختر العرض المناسب:</h3>
+                    {/* Bundle Selection Offers (Right/Order 1) */}
+                    <div className="w-full lg:w-1/2 bg-slate-900 p-6 md:p-10 border-b lg:border-b-0 lg:border-r border-slate-800 text-white order-1 lg:order-2 flex flex-col justify-between">
+                        <div>
+                            <h3 className="text-xl font-black mb-6 text-amber-300 flex items-center gap-2 border-b pb-3 border-slate-800">
+                                <i className="fa-solid fa-gift text-emerald-400" />
+                                <span>اختر باقتك المفضلة:</span>
+                            </h3>
 
-                        <div className="space-y-4">
-                            {/* Bundle 1 */}
-                            <div onClick={() => setBundle(1)} className={`p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 1 ? 'border-brand-green bg-emerald-50' : 'border-slate-200 bg-white hover:border-slate-300'}`}>
-                                <div className="flex items-center gap-3">
-                                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${bundle === 1 ? 'border-brand-green' : 'border-slate-300'}`}>
-                                        {bundle === 1 && <div className="w-2.5 h-2.5 rounded-full bg-brand-green" />}
+                            <div className="space-y-3.5">
+                                {/* Bundle 1 */}
+                                <div 
+                                    onClick={() => setBundle(1)} 
+                                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 1 ? 'border-amber-400 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.2)]' : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'}`}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${bundle === 1 ? 'border-amber-400' : 'border-slate-600'}`}>
+                                            {bundle === 1 && <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />}
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-base text-white">1x فلاشة نور الذهبية 64GB</h4>
+                                            <p className="text-xs text-slate-400">مناسبة لطفل واحد</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4 className="font-bold text-lg">فلاش ميموري واحدة</h4>
-                                        <p className="text-xs text-slate-500">سعة 64 جيجا</p>
+                                    <span className="font-black text-lg text-amber-300">249 د.م</span>
+                                </div>
+
+                                {/* Bundle 2 (Popular) */}
+                                <div 
+                                    onClick={() => setBundle(2)} 
+                                    className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 2 ? 'border-emerald-400 bg-emerald-500/15 shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'}`}
+                                >
+                                    <div className="absolute -top-3 left-4 bg-gradient-to-r from-emerald-500 to-amber-500 text-slate-950 text-[11px] font-black px-3 py-0.5 rounded-full shadow-lg animate-pulse">
+                                        الأكثر طلباً ومبيعاً 🔥
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${bundle === 2 ? 'border-emerald-400' : 'border-slate-600'}`}>
+                                            {bundle === 2 && <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />}
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-base text-white">2x فلاشة نور 64GB (توفير خاص)</h4>
+                                            <p className="text-xs text-emerald-400 font-bold">توفير 99 درهم مالي</p>
+                                        </div>
+                                    </div>
+                                    <div className="text-left">
+                                        <span className="line-through text-slate-500 text-xs">498 د.م</span><br/>
+                                        <span className="font-black text-xl text-emerald-300">399 د.م</span>
                                     </div>
                                 </div>
-                                <span className="font-black text-xl">249 درهم</span>
+                                
+                                {/* Bundle 3 */}
+                                <div 
+                                    onClick={() => setBundle(3)} 
+                                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 3 ? 'border-amber-400 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.2)]' : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'}`}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${bundle === 3 ? 'border-amber-400' : 'border-slate-600'}`}>
+                                            {bundle === 3 && <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />}
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-base text-white">3x باقة العائلة الكاملة</h4>
+                                            <p className="text-xs text-slate-400">أفضل قيمة بأقل سعر للقطعة</p>
+                                        </div>
+                                    </div>
+                                    <span className="font-black text-lg text-amber-300">549 د.م</span>
+                                </div>
                             </div>
 
-                            {/* Bundle 2 (Popular) */}
-                            <div onClick={() => setBundle(2)} className={`relative p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 2 ? 'border-brand-accent bg-orange-50' : 'border-slate-200 bg-white hover:border-slate-300'}`}>
-                                <div className="absolute -top-3 left-6 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-bounce">
-                                    الأكثر طلباً 🔥
+                            {/* Order Bump Upgrade */}
+                            <div 
+                                onClick={() => setOrderBump(!orderBump)}
+                                className={`mt-5 p-3.5 rounded-xl border-2 transition-all cursor-pointer flex gap-3 items-center ${orderBump ? 'border-amber-400 bg-amber-400/10' : 'border-dashed border-emerald-500/40 bg-emerald-950/30 hover:border-emerald-500'}`}
+                            >
+                                <div className={`w-5 h-5 rounded border flex items-center justify-center shrink-0 ${orderBump ? 'bg-amber-400 border-amber-400 text-slate-950' : 'border-slate-500 bg-slate-800'}`}>
+                                    {orderBump && <i className="fa-solid fa-check text-xs font-black" />}
                                 </div>
-                                <div className="flex items-center gap-3">
-                                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${bundle === 2 ? 'border-brand-accent' : 'border-slate-300'}`}>
-                                        {bundle === 2 && <div className="w-2.5 h-2.5 rounded-full bg-brand-accent" />}
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-lg">2 فلاش ميموري</h4>
-                                        <p className="text-xs text-brand-accent font-bold">توفير 99 درهم</p>
-                                    </div>
+                                <div className="text-xs">
+                                    <span className="font-bold text-white block">
+                                        إضافة فلاشة السيارة الإضافية بـ <span className="text-amber-300 font-black">+99 د.م فقط</span>
+                                    </span>
+                                    <span className="text-slate-400 block text-[11px]">أناشيد وقرآن كريم مخصصين للرحلات والسيارة</span>
                                 </div>
-                                <div className="text-left">
-                                    <span className="line-through text-slate-400 text-sm">498 د.م</span><br/>
-                                    <span className="font-black text-2xl text-brand-accent">399 درهم</span>
-                                </div>
-                            </div>
-                            
-                            {/* Bundle 3 */}
-                            <div onClick={() => setBundle(3)} className={`p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 3 ? 'border-brand-green bg-emerald-50' : 'border-slate-200 bg-white hover:border-slate-300'}`}>
-                                <div className="flex items-center gap-3">
-                                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${bundle === 3 ? 'border-brand-green' : 'border-slate-300'}`}>
-                                        {bundle === 3 && <div className="w-2.5 h-2.5 rounded-full bg-brand-green" />}
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-lg">باقة العائلة (3 فلاش)</h4>
-                                        <p className="text-xs text-slate-500">أحسن ثمن للحبة</p>
-                                    </div>
-                                </div>
-                                <span className="font-black text-xl">549 درهم</span>
                             </div>
                         </div>
 
-                        {/* Order Bump */}
-                        <div className={`mt-6 p-4 rounded-xl border-2 transition-all cursor-pointer flex gap-4 ${orderBump ? 'border-brand-primary bg-blue-50' : 'border-dashed border-brand-accent bg-orange-50/50 hover:bg-orange-50'}`} onClick={() => setOrderBump(!orderBump)}>
-                            <div className="pt-1">
-                                <div className={`w-6 h-6 rounded border-2 flex items-center justify-center ${orderBump ? 'bg-brand-primary border-brand-primary' : 'border-slate-400 bg-white'}`}>
-                                    {orderBump && <i className="fa-solid fa-check text-white text-sm"></i>}
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className="font-black text-lg text-slate-800 flex items-center gap-2">
-                                    أضف فلاشة السيارة <span className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full animate-pulse">عرض خاص</span>
-                                </h4>
-                                <p className="text-sm text-slate-600 mt-1 leading-tight">احصل على فلاش ميموري إضافية للسيارة تحتوي على أناشيد وقرآن فقط بـ <span className="font-bold text-brand-accent">99 درهم</span> بدلاً من 199 درهم!</p>
-                            </div>
+                        {/* Price Calculation Summary */}
+                        <div className="pt-4 mt-6 border-t border-slate-800 flex justify-between items-center">
+                            <span className="text-sm font-bold text-slate-300">المجموع الكلي:</span>
+                            <span className="text-3xl font-black text-amber-300 font-mono">{price} درهم</span>
                         </div>
 
-                        <hr className="my-6 border-slate-200" />
-                        <div className="flex justify-between items-center font-black">
-                            <span className="text-xl">المجموع الدفع:</span>
-                            <span className="text-3xl text-brand-primary">{price} درهم</span>
-                        </div>
                     </div>
                 </div>
             </div>
