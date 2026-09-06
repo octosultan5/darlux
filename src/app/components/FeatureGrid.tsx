@@ -31,26 +31,22 @@ export default function FeatureGrid() {
   ];
 
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white rtl relative overflow-hidden">
+    <section className="py-20 sm:py-32 bg-slate-50 text-slate-900 rtl relative overflow-hidden border-t border-slate-100">
       
-      {/* Glow Orbs */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#c57d5c]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
-        <div className="text-center mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#c57d5c]/20 border border-[#c57d5c]/40 text-amber-300 font-bold text-xs sm:text-sm mb-3">
+        <div className="text-center mb-16">
+          <span className="inline-block px-5 py-2 rounded-full bg-[#c57d5c]/10 text-[#c57d5c] font-bold text-sm mb-4">
             علاش هاد الريشو خاصو يكون عندك فـ الدار؟ 💥
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black mb-4">
-            مميزات بلاكة <span className="copper-gradient-text">RAF 1000W الكهربائية</span>
+          <h2 className="text-4xl sm:text-6xl font-black mb-6 text-slate-900 tracking-tight">
+            مميزات بلاكة <span className="text-[#c57d5c]">RAF 1000W</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 font-medium max-w-xl mx-auto">
-            الحل العملي والسريع للطبخ والتسخين فـ أي مكان بدون حاجة للغاز.
+          <p className="text-lg sm:text-xl text-slate-600 font-medium max-w-2xl mx-auto">
+            الحل العملي والسريع للطبخ والتسخين في أي مكان بدون الحاجة للغاز.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {features.map((item, index) => (
             <motion.div 
               key={index} 
@@ -58,13 +54,13 @@ export default function FeatureGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="copper-glass rounded-3xl p-6 sm:p-8 hover:border-amber-400/60 hover:-translate-y-2 transition-all duration-300 text-center group shadow-xl"
+              className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 text-center group"
             >
-              <div className={`w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-none border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${item.color}`}>
-                <i className={`${item.icon} text-3xl sm:text-4xl`} />
+              <div className="w-20 h-20 mx-auto rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform shadow-sm text-[#c57d5c]">
+                <i className={`${item.icon.replace('text-amber-300', '').replace('text-emerald-300', '')} text-4xl`} />
               </div>
-              <h3 className="text-lg sm:text-xl font-black text-amber-300 mb-3">{item.title}</h3>
-              <p className="text-slate-300 text-sm leading-relaxed font-medium">{item.desc}</p>
+              <h3 className="text-xl font-black text-slate-900 mb-4 leading-tight">{item.title}</h3>
+              <p className="text-slate-600 text-base leading-relaxed font-medium">{item.desc}</p>
             </motion.div>
           ))}
         </div>

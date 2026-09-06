@@ -8,121 +8,134 @@ export default function TextAndImagesSection() {
   };
 
   return (
-    <section className="py-16 sm:py-24 px-4 bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#0f172a] text-white rtl relative overflow-hidden">
-      <div className="max-w-6xl mx-auto space-y-16 relative z-10">
+    <section className="py-20 sm:py-32 px-4 bg-white text-slate-900 rtl relative overflow-hidden border-t border-slate-100">
+      <div className="max-w-6xl mx-auto space-y-24 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#c57d5c]/20 border border-[#c57d5c]/40 text-amber-300 font-bold text-xs sm:text-sm mb-4">
-            معرض الصور والمواصفات الرسمية 📷
+          <span className="inline-block px-5 py-2 rounded-full bg-slate-100 border border-slate-200 text-slate-600 font-bold text-sm mb-6 uppercase tracking-wider">
+            المواصفات الرسمية 📷
           </span>
-          <h2 className="text-3xl sm:text-5xl font-black mb-4">
-            كل ما تريد معرفته عن <span className="copper-gradient-text">Réchaud RAF 1000W</span>
+          <h2 className="text-4xl sm:text-6xl font-black mb-6 text-slate-900 leading-tight tracking-tight">
+            كل ما تحتاج معرفته عن <br/> <span className="text-[#c57d5c]">Réchaud RAF 1000W</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-300 font-medium">
-            شاهد بالتفصيل جودة التصنيع، دقة التحكم فـ الحرارة، واقتصاد الفاتورة.
+          <p className="text-lg sm:text-xl text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto">
+            اكتشف جودة التصنيع، دقة التحكم في الحرارة، وكيف يمكن لهذا الجهاز أن يسهل حياتك اليومية ويوفر في فاتورتك.
           </p>
         </div>
 
         {/* Banner 1: Master Lifestyle & Frying Pan */}
-        <div className="copper-glass rounded-3xl p-4 sm:p-8 shadow-2xl border border-amber-400/30 flex flex-col lg:flex-row items-center gap-8 group">
-          <div className="w-full lg:w-1/2 relative rounded-none overflow-hidden shadow-xl aspect-[4/3] bg-slate-950">
+        <div className="bg-slate-50 rounded-[2rem] p-6 sm:p-12 border border-slate-100 flex flex-col lg:flex-row items-center gap-12 group transition-all hover:shadow-xl hover:shadow-slate-200/50">
+          <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3] bg-white">
             <img 
               src="/solero/solero.jpg" 
               alt="Réchaud RAF 1000W DarLux Lifestyle" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute top-4 right-4 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-xs px-3.5 py-1.5 rounded-full shadow-lg">
-              169 DH - ثمن استثنائي 🔥
+            <div className="absolute top-5 right-5 bg-white text-slate-900 font-black text-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              أداء استثنائي
             </div>
           </div>
-          <div className="w-full lg:w-1/2 space-y-4 text-right">
-            <span className="text-amber-400 font-bold text-xs tracking-wider uppercase">01. الطبخ والتسخين اليومي السريع</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-white">تحضير أشهى الوجبات فـ وقت قياسي وبسهولة</h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              بفضل قوة 1000W، تقدر تستعملها يومياً لتحضير أو تسخين بزاف ديال الأكلات: غلي الماء فـ أقل من 5 دقائق، طياب البيض، الشوربة، المعكرونة، القهوة، أو حفظ الأكل ساخناً.
+          <div className="w-full lg:w-1/2 space-y-6 text-right">
+            <span className="text-[#c57d5c] font-bold text-sm tracking-wider uppercase bg-[#c57d5c]/10 px-3 py-1 rounded-md">01. الطبخ اليومي السريع</span>
+            <h3 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight">تحضير أشهى الوجبات في وقت قياسي</h3>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              بفضل قوة 1000W، يمكنك الاعتماد عليه يومياً لتحضير وتسخين مختلف الأكلات. غلي الماء في أقل من 5 دقائق، تحضير الشوربة، القهوة، أو حفظ الأكل ساخناً بسهولة تامة.
             </p>
-            <div className="flex flex-wrap gap-2 pt-2">
-              <span className="bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-lg border border-emerald-500/30">✓ غلي الماء فـ 5 دقائق</span>
-              <span className="bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-lg border border-emerald-500/30">✓ طياب وتدفئة الأكل</span>
-            </div>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-slate-700 font-bold">
+                <i className="fa-solid fa-check text-emerald-500 text-lg"></i> غلي الماء في 5 دقائق فقط
+              </li>
+              <li className="flex items-center gap-3 text-slate-700 font-bold">
+                <i className="fa-solid fa-check text-emerald-500 text-lg"></i> مثالي لطبخ وتدفئة الطعام
+              </li>
+            </ul>
           </div>
         </div>
 
         {/* Banner 2: 5 Heat Levels & Overheat Protection */}
-        <div className="copper-glass rounded-3xl p-4 sm:p-8 shadow-2xl border border-amber-400/30 flex flex-col lg:flex-row-reverse items-center gap-8 group">
-          <div className="w-full lg:w-1/2 relative rounded-none overflow-hidden shadow-xl aspect-[4/3] bg-slate-950">
+        <div className="bg-slate-50 rounded-[2rem] p-6 sm:p-12 border border-slate-100 flex flex-col lg:flex-row-reverse items-center gap-12 group transition-all hover:shadow-xl hover:shadow-slate-200/50">
+          <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3] bg-white">
             <img 
               src="/solero/He9e36218ab68467bae1f5a9a224ef20fS.jpg" 
               alt="5 Heat Levels & Thermostat" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute top-4 right-4 bg-amber-400 text-slate-950 font-black text-xs px-3.5 py-1.5 rounded-full shadow-lg">
-              Thermostat Réglable 🌡️
+            <div className="absolute top-5 right-5 bg-white text-slate-900 font-black text-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+              <i className="fa-solid fa-temperature-half text-[#c57d5c]"></i>
+              ترموستات دقيق
             </div>
           </div>
-          <div className="w-full lg:w-1/2 space-y-4 text-right">
-            <span className="text-amber-400 font-bold text-xs tracking-wider uppercase">02. تحكم دقيق فـ درجة الحرارة</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-white">5 مستويات حرارة مع ترموستات قابل للتعديل</h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              مجهزة بـ Bouton Rotatif كيسماح ليك تضبط مستوى الحرارة حسب الأكلة: حرارة قوية للطبخ والغلي، حرارة متوسطة للتحضير اليومي، وحرارة خفيفة للتسخين والمحافظة على السخونية.
+          <div className="w-full lg:w-1/2 space-y-6 text-right">
+            <span className="text-[#c57d5c] font-bold text-sm tracking-wider uppercase bg-[#c57d5c]/10 px-3 py-1 rounded-md">02. تحكم كامل بالحرارة</span>
+            <h3 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight">5 مستويات حرارة لتناسب كل احتياجاتك</h3>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              مزود بزر دوار يتيح لك ضبط مستوى الحرارة بدقة: حرارة قوية للطبخ السريع، متوسطة للتحضير اليومي، وخفيفة للتسخين والمحافظة على حرارة الأكل.
             </p>
-            <div className="flex flex-wrap gap-2 pt-2">
-              <span className="bg-slate-950/80 text-amber-300 text-xs font-bold px-3 py-1 rounded-lg border border-amber-400/30">🔥 حرارة قوية للطبخ</span>
-              <span className="bg-slate-950/80 text-amber-300 text-xs font-bold px-3 py-1 rounded-lg border border-amber-400/30">🛡️ حماية ضد السخونية الزائدة</span>
-            </div>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-slate-700 font-bold">
+                <i className="fa-solid fa-fire-flame-curved text-[#c57d5c] text-lg"></i> حرارة قوية للطبخ والقلي
+              </li>
+              <li className="flex items-center gap-3 text-slate-700 font-bold">
+                <i className="fa-solid fa-shield-halved text-[#c57d5c] text-lg"></i> نظام حماية ذكي ضد الحرارة الزائدة
+              </li>
+            </ul>
           </div>
         </div>
 
         {/* Banner 3: Electricity vs Butane Gas Cost Savings */}
-        <div className="copper-glass rounded-3xl p-4 sm:p-8 shadow-2xl border border-amber-400/30 flex flex-col lg:flex-row items-center gap-8 group">
-          <div className="w-full lg:w-1/2 relative rounded-none overflow-hidden shadow-xl aspect-[4/3] bg-slate-950">
+        <div className="bg-slate-50 rounded-[2rem] p-6 sm:p-12 border border-slate-100 flex flex-col lg:flex-row items-center gap-12 group transition-all hover:shadow-xl hover:shadow-slate-200/50">
+          <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3] bg-white">
             <img 
               src="/solero/HTB19CR9M9zqK1RjSZPxq6A4tVXab.jpg" 
               alt="Electricity vs Gas Cost Comparison" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute top-4 right-4 bg-emerald-500 text-slate-950 font-black text-xs px-3.5 py-1.5 rounded-full shadow-lg">
-              توفير 40% فـ الفاتورة 💰
+            <div className="absolute top-5 right-5 bg-emerald-500 text-white font-black text-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+              <i className="fa-solid fa-piggy-bank"></i>
+              توفير ملموس
             </div>
           </div>
-          <div className="w-full lg:w-1/2 space-y-4 text-right">
-            <span className="text-amber-400 font-bold text-xs tracking-wider uppercase">03. مقارنة التوفير والأمان</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-white">40 DH بدلاً من 60 DH شهرياً ودون مشاكل الغاز</h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              توفر تقنية المقاومة الحرارية الحلزونية استهلاكاً منخفضاً للكهرباء مقارنة بعناء وشراء بوطا الغاز الشهرية، مع القضاء التام على خطر تسرب الغاز والرائحة.
+          <div className="w-full lg:w-1/2 space-y-6 text-right">
+            <span className="text-[#c57d5c] font-bold text-sm tracking-wider uppercase bg-[#c57d5c]/10 px-3 py-1 rounded-md">03. اقتصاد وأمان</span>
+            <h3 className="text-3xl sm:text-4xl font-black text-slate-900 leading-tight">وفر حتى 40% من تكاليفك الشهرية</h3>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              تقنية المقاومة الحرارية الحلزونية تضمن استهلاكاً منخفضاً للكهرباء. انسَ عناء شراء قنينات الغاز ومخاطر التسرب، واستمتع بطبخ آمن واقتصادي.
             </p>
-            <div className="flex flex-wrap gap-2 pt-2">
-              <span className="bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-lg border border-emerald-500/30">✓ صفر تسرب غاز</span>
-              <span className="bg-slate-950/80 text-emerald-400 text-xs font-bold px-3 py-1 rounded-lg border border-emerald-500/30">✓ اقتصاد 40% فـ الفاتورة</span>
-            </div>
+            <ul className="space-y-3 pt-2">
+              <li className="flex items-center gap-3 text-slate-700 font-bold">
+                <i className="fa-solid fa-check text-emerald-500 text-lg"></i> وداعاً لمخاطر تسرب الغاز
+              </li>
+              <li className="flex items-center gap-3 text-slate-700 font-bold">
+                <i className="fa-solid fa-check text-emerald-500 text-lg"></i> اقتصاد 40% في الفاتورة الشهرية
+              </li>
+            </ul>
           </div>
         </div>
 
         {/* Banner 4: Specifications & Compact Dimensions */}
-        <div className="copper-glass rounded-3xl p-4 sm:p-8 shadow-2xl border border-amber-400/30 flex flex-col lg:flex-row-reverse items-center gap-8 group">
-          <div className="w-full lg:w-1/2 relative rounded-none overflow-hidden shadow-xl aspect-[4/3] bg-slate-950">
+        <div className="bg-slate-900 rounded-[2rem] p-6 sm:p-12 border border-slate-800 flex flex-col lg:flex-row-reverse items-center gap-12 group transition-all shadow-2xl">
+          <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-black">
             <img 
               src="/solero/Hfb1b25153c7d477d90ced37b729da262g.jpg" 
               alt="Dimensions & Technical Specs" 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
             />
-            <div className="absolute top-4 right-4 bg-amber-400 text-slate-950 font-black text-xs px-3.5 py-1.5 rounded-full shadow-lg">
-              صغيرة فالحجم... كبيرة فالاستعمال!
-            </div>
           </div>
-          <div className="w-full lg:w-1/2 space-y-4 text-right">
-            <span className="text-amber-400 font-bold text-xs tracking-wider uppercase">04. المواصفات التقنية والأبعاد</span>
-            <h3 className="text-2xl sm:text-3xl font-black text-white">تصميم مدمج (24.5x22x7 سم) وزن خفيف 1.3kg</h3>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              مثالية للدراسة، المكتب، السفر، الستوديو، أو كبلاكة إضافية فالكوزينة. مجهزة بكابل متين 55 سم وإطار معدني مقاوم للصدمات والحرارة العالية.
+          <div className="w-full lg:w-1/2 space-y-6 text-right text-white">
+            <span className="text-amber-400 font-bold text-sm tracking-wider uppercase bg-amber-400/10 px-3 py-1 rounded-md border border-amber-400/20">04. تصميم ذكي ومدمج</span>
+            <h3 className="text-3xl sm:text-4xl font-black text-white leading-tight">صغيرة في الحجم، كبيرة في الأداء</h3>
+            <p className="text-slate-300 text-lg leading-relaxed">
+              بأبعاد (24.5x22x7 سم) ووزن 1.3kg فقط، هي الخيار المثالي للطلبة، المكاتب، السفر، أو كإضافة عملية في مطبخك. مصنوعة بإطار معدني متين مقاوم للصدمات.
             </p>
-            <div className="pt-2">
+            <div className="pt-6">
               <button 
                 onClick={scrollToCheckout}
-                className="btn-copper-cta text-white font-black text-base sm:text-lg px-8 py-3.5 rounded-none shadow-xl hover:scale-105 transition-transform"
+                className="w-full sm:w-auto bg-[#c57d5c] hover:bg-[#b06a4b] text-white font-black text-xl px-10 py-4 rounded-xl shadow-[0_8px_20px_rgba(197,125,92,0.4)] hover:shadow-[0_10px_25px_rgba(197,125,92,0.5)] transition-all active:scale-95 flex items-center justify-center gap-3"
               >
-                احصل عليها الآن بـ 169 درهم
+                <span>احصل عليها الآن بـ 169 درهم</span>
+                <i className="fa-solid fa-arrow-left"></i>
               </button>
             </div>
           </div>
