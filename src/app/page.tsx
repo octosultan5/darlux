@@ -6,7 +6,6 @@ import FeatureGrid from "./components/FeatureGrid";
 import ProductDetailsSection from "./components/ProductDetailsSection";
 import VideoCategories from "./components/VideoCategories";
 import TextAndImagesSection from "./components/TextAndImagesSection";
-import VideoOverview from "./components/VideoOverview";
 import Footer from "./components/Footer";
 import ReviewsSection from "./components/ReviewsSection";
 
@@ -27,7 +26,6 @@ export default function Home() {
       <TextMarquee />
       <TextAndImagesSection />
       <CheckoutForm id="checkout-top" />
-      <VideoOverview />
       <FeatureGrid />
       <ProductDetailsSection />
       <VideoCategories />

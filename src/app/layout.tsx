@@ -3,8 +3,8 @@ import "./globals.css";
 import Pixels from "./components/Pixels";
 
 export const metadata: Metadata = {
-  title: "NoorUSB - المكتبة الذكية لطفلك",
-  description: "أروع هدية لطفلك في 2026: مكتبة ذكية في جيبك. أكثر من 2000 فيديو تعليمي إسلامي وتربوي.",
+  title: "DarLux - Réchaud Électrique RAF 1000W | بلاكة كهربائية للطهي والتسخين",
+  description: "بلاكة كهربائية محمولة RAF 1000W - بديل الفرن والبوطا، اقتصاد 40% فـ الكهرباء وسخونية فورية بـ 169 درهم مع توصيل مجاني والدفع بعد المعاينة عند الاستلام بالمغرب.",
 };
 
 export default function RootLayout({
