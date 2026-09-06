@@ -30,7 +30,7 @@ export default function AdminDashboard() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (usernameInput === "octo" && passwordInput === "123456") {
+    if (usernameInput.toLowerCase() === "octo" && passwordInput === "123456") {
       setIsAuthenticated(true);
     } else {
       alert("معلومات الدخول غير صحيحة!");
@@ -64,25 +64,43 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) return (
     <div className="flex items-center justify-center min-h-[85vh]">
-      <form onSubmit={handleLogin} className="bg-[#1c1f2e] p-10 rounded-2xl shadow-2xl w-full max-w-[400px] flex flex-col items-center border border-white/5 relative overflow-hidden">
-        {/* Glow effect behind logo */}
-        <div className="absolute top-0 w-full h-32 bg-[#fbbf24]/5 blur-3xl rounded-full"></div>
+      <form onSubmit={handleLogin} className="bg-[#1c1f2e] p-10 rounded-2xl shadow-2xl w-full max-w-[400px] flex flex-col items-center border border-white/5 relative overflow-hidden z-10">
         
-        <div className="relative z-10 w-12 h-12 bg-[#fbbf24] text-[#1c1f2e] flex items-center justify-center font-black text-xl rounded-lg mb-6 shadow-[0_0_15px_rgba(251,191,36,0.3)]">D</div>
-        <h1 className="relative z-10 text-xl font-bold text-white mb-2">DarLux Dashboard</h1>
+        {/* Glow effect - FIXED POINTER EVENTS (added pointer-events-none and z-0) */}
+        <div className="absolute top-0 w-full h-32 bg-[#d4af37]/5 blur-3xl rounded-full pointer-events-none z-0"></div>
+        
+        <div className="relative z-10 mb-6 w-full flex justify-center pointer-events-none">
+           <img src="/darlux_logo_transparent.png" alt="DarLux" className="h-16 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.2)]" />
+        </div>
+        
+        <h1 className="relative z-10 text-xl font-bold text-white mb-2">DarLux Admin</h1>
         <p className="relative z-10 text-xs text-slate-400 mb-10">Sign in with your admin credentials</p>
         
-        <div className="relative z-10 w-full mb-5">
+        <div className="relative z-20 w-full mb-5">
           <label className="text-[10px] font-bold text-white uppercase tracking-wider mb-2 block text-left w-full">Username</label>
-          <input type="text" placeholder="Enter username..." value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} className="w-full bg-[#131522] border border-white/5 rounded-lg px-4 py-3.5 text-sm text-white text-left outline-none focus:border-[#fbbf24] transition-colors" dir="ltr" />
+          <input 
+            type="text" 
+            placeholder="Enter octo..." 
+            value={usernameInput} 
+            onChange={(e) => setUsernameInput(e.target.value)} 
+            className="w-full bg-[#131522] border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white text-left outline-none focus:border-[#d4af37] transition-colors relative z-20" 
+            dir="ltr" 
+          />
         </div>
 
-        <div className="relative z-10 w-full mb-8">
+        <div className="relative z-20 w-full mb-8">
           <label className="text-[10px] font-bold text-white uppercase tracking-wider mb-2 block text-left w-full">Password</label>
-          <input type="password" placeholder="••••••••" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className="w-full bg-[#131522] border border-white/5 rounded-lg px-4 py-3.5 text-sm text-white text-left outline-none focus:border-[#fbbf24] transition-colors" dir="ltr" />
+          <input 
+            type="password" 
+            placeholder="••••••••" 
+            value={passwordInput} 
+            onChange={(e) => setPasswordInput(e.target.value)} 
+            className="w-full bg-[#131522] border border-white/10 rounded-lg px-4 py-3.5 text-sm text-white text-left outline-none focus:border-[#d4af37] transition-colors relative z-20" 
+            dir="ltr" 
+          />
         </div>
 
-        <button type="submit" className="relative z-10 w-full bg-[#fbbf24] text-[#1c1f2e] rounded-lg py-3.5 text-sm font-bold hover:bg-yellow-400 transition-all shadow-[0_0_15px_rgba(251,191,36,0.2)]">Sign In</button>
+        <button type="submit" className="relative z-20 w-full bg-[#d4af37] text-[#1c1f2e] rounded-lg py-3.5 text-sm font-bold hover:bg-[#c5a059] transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)] cursor-pointer">Sign In</button>
       </form>
     </div>
   );
@@ -92,7 +110,7 @@ export default function AdminDashboard() {
       <div className="flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
           <h1 className="text-2xl font-black text-white flex items-center gap-2">
-            <LayoutDashboard className="w-6 h-6 text-[#fbbf24]" /> لوحة القيادة
+            <LayoutDashboard className="w-6 h-6 text-[#d4af37]" /> لوحة القيادة
           </h1>
         </div>
         <button onClick={fetchOrders} className="bg-[#1c1f2e] border border-white/10 text-white px-5 py-2.5 rounded-lg text-sm font-bold shadow-sm hover:bg-white/5 transition-all">تحديث البيانات</button>
@@ -124,7 +142,7 @@ export default function AdminDashboard() {
             <span className="text-slate-400 text-xs font-bold block mb-1">طلبات اليوم</span>
             <span className="text-3xl font-black text-white">{stats.todayOrders}</span>
           </div>
-          <div className="w-12 h-12 rounded-xl bg-[#fbbf24]/10 text-[#fbbf24] flex items-center justify-center text-xl border border-[#fbbf24]/20">
+          <div className="w-12 h-12 rounded-xl bg-[#d4af37]/10 text-[#d4af37] flex items-center justify-center text-xl border border-[#d4af37]/20">
             <TrendingUp className="w-5 h-5" />
           </div>
         </div>
@@ -142,10 +160,10 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <div className="bg-[#1c1f2e] rounded-2xl shadow-lg border border-white/5 p-6">
-           <h2 className="text-lg font-bold mb-6 flex items-center gap-2 text-white"><ShoppingBag className="w-5 h-5 text-[#fbbf24]" /> اختصارات سريعة</h2>
+           <h2 className="text-lg font-bold mb-6 flex items-center gap-2 text-white"><ShoppingBag className="w-5 h-5 text-[#d4af37]" /> اختصارات سريعة</h2>
            <div className="grid grid-cols-2 gap-4">
               <Link href="/adminpage/call-center" className="bg-[#131522] hover:bg-[#25283b] border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center text-center transition-all">
-                <PhoneCall className="w-8 h-8 text-[#fbbf24] mb-3" />
+                <PhoneCall className="w-8 h-8 text-[#d4af37] mb-3" />
                 <span className="font-bold text-white text-sm">مركز الإتصال</span>
               </Link>
               <Link href="/adminpage/orders" className="bg-[#131522] hover:bg-[#25283b] border border-white/5 p-6 rounded-xl flex flex-col items-center justify-center text-center transition-all">

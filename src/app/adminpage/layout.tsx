@@ -14,11 +14,8 @@ function SidebarContent() {
 
   return (
     <aside className="w-64 bg-[#11131e] border-l border-white/5 hidden md:flex flex-col shrink-0 text-slate-300">
-      <div className="p-6 border-b border-white/5 flex items-center justify-start gap-3 flex-row-reverse">
-        <div className="w-8 h-8 bg-[#fbbf24] rounded-lg flex items-center justify-center text-[#11131e] font-black text-lg shrink-0">
-          D
-        </div>
-        <span className="font-black text-white text-xl tracking-tight text-right w-full">DarLux Admin</span>
+      <div className="p-6 border-b border-white/5 flex items-center justify-center gap-3">
+        <img src="/darlux_logo_transparent.png" alt="DarLux Logo" className="h-10 object-contain" />
       </div>
 
       <nav className="flex-1 p-4 space-y-2 mt-4 text-sm font-medium">
@@ -42,7 +39,7 @@ function SidebarContent() {
 
 function NavLink({ href, icon, label, active }: { href: string, icon: React.ReactNode, label: string, active?: boolean }) {
   return (
-    <Link href={href} className={`flex items-center justify-end flex-row-reverse gap-3 px-4 py-3 rounded-xl transition-all ${active ? 'bg-white/5 text-white font-bold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}>
+    <Link href={href} className={`flex items-center justify-end flex-row-reverse gap-3 px-4 py-3 rounded-xl transition-all ${active ? 'bg-[#d4af37]/10 text-[#d4af37] font-bold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}>
       {icon}
       <span>{label}</span>
     </Link>
@@ -64,14 +61,16 @@ export default function AdminLayout({
         <header className="h-16 bg-[#11131e] border-b border-white/5 flex items-center justify-between px-6 shrink-0">
           <div className="flex items-center gap-3 flex-row-reverse">
             <div className="w-10 h-10 bg-[#1c1f2e] rounded-full border border-white/10 flex items-center justify-center">
-              <span className="text-white font-bold text-xs">DX</span>
+              <span className="text-[#d4af37] font-bold text-xs">DX</span>
             </div>
             <div className="text-right flex flex-col">
               <span className="text-xs font-bold text-white">octo@darlux.ma</span>
               <span className="text-[10px] text-slate-500">Administrator</span>
             </div>
           </div>
-          <div className="md:hidden font-black text-lg text-white">DarLux Admin</div>
+          <div className="md:hidden">
+            <img src="/darlux_logo_transparent.png" alt="DarLux Logo" className="h-8 object-contain" />
+          </div>
         </header>
 
         {/* Scrollable Content */}
