@@ -264,15 +264,18 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                             <button 
                                 type="submit" 
                                 disabled={isSubmitting} 
-                                className="w-full bg-emerald-500 hover:bg-emerald-600 active:scale-[0.98] text-white text-xl py-4.5 rounded-xl font-black flex items-center justify-center gap-3 mt-4 shadow-[0_8px_20px_rgba(16,185,129,0.3)] transition-all"
+                                className="relative overflow-hidden group w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-teal-600 hover:to-emerald-500 active:scale-[0.97] text-white text-xl py-4 sm:py-5 rounded-2xl font-black flex items-center justify-center gap-3 mt-4 shadow-[0_10px_25px_rgba(16,185,129,0.4)] transition-all duration-300 animate-pulse hover:animate-none"
                             >
+                                {/* Shine Sweep Effect */}
+                                <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 transition-transform duration-1000 ease-in-out"></div>
+                                
                                 {isSubmitting ? (
-                                    <span className="flex items-center gap-2 py-1">
+                                    <span className="flex items-center gap-2 py-1 relative z-10">
                                         <i className="fa-solid fa-spinner animate-spin" /> جاري تأكيد الطلب...
                                     </span>
                                 ) : (
-                                    <span className="flex items-center gap-2 py-1">
-                                        تأكيد الطلب بـ {price} درهم <i className="fa-solid fa-cart-check ml-1" />
+                                    <span className="flex items-center gap-2 py-1 relative z-10">
+                                        تأكيد الطلب بـ {price} درهم <i className="fa-solid fa-cart-check ml-1 text-2xl" />
                                     </span>
                                 )}
                             </button>
