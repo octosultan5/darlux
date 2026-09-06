@@ -129,27 +129,30 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                                 {/* Bundle 1 */}
                                 <div 
                                     onClick={() => setBundle(1)} 
-                                    className={`relative p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 1 ? 'border-[#c57d5c] bg-[#c57d5c]/5 shadow-md' : 'border-slate-200 bg-white hover:border-slate-300'}`}
+                                    className={`relative p-4 sm:p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 1 ? 'border-[#c57d5c] bg-[#c57d5c]/5 shadow-md' : 'border-slate-200 bg-white hover:border-slate-300'}`}
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${bundle === 1 ? 'border-[#c57d5c]' : 'border-slate-300'}`}>
                                             {bundle === 1 && <div className="w-3 h-3 rounded-full bg-[#c57d5c]" />}
                                         </div>
+                                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-slate-200 bg-white shrink-0">
+                                            <img src="/solero/solero.jpg" alt="1x Rechaud" className="w-full h-full object-cover" />
+                                        </div>
                                         <div>
-                                            <h4 className="font-bold text-base text-slate-900">1x Réchaud Électrique 1000W</h4>
-                                            <p className="text-xs text-slate-500 font-medium mt-1">مثالي للاستعمال الفردي</p>
+                                            <h4 className="font-bold text-sm sm:text-base text-slate-900 leading-tight">1x Réchaud Électrique</h4>
+                                            <p className="text-[11px] sm:text-xs text-slate-500 font-medium mt-1">مثالي للاستعمال الفردي</p>
                                         </div>
                                     </div>
-                                    <div className="text-left">
-                                        <span className="line-through text-slate-400 text-xs font-bold">299 د.م</span><br/>
-                                        <span className="font-black text-2xl text-[#c57d5c]">169 د.م</span>
+                                    <div className="text-left shrink-0 ml-2">
+                                        <span className="line-through text-slate-400 text-[11px] sm:text-xs font-bold">299 د.م</span><br/>
+                                        <span className="font-black text-lg sm:text-2xl text-[#c57d5c]">169 د.م</span>
                                     </div>
                                 </div>
 
                                 {/* Bundle 2 (Popular) */}
                                 <div 
                                     onClick={() => setBundle(2)} 
-                                    className={`relative p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 2 ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:border-slate-300'}`}
+                                    className={`relative p-4 sm:p-5 rounded-2xl border-2 cursor-pointer transition-all flex justify-between items-center ${bundle === 2 ? 'border-emerald-500 bg-emerald-50 shadow-md' : 'border-slate-200 bg-white hover:border-slate-300'}`}
                                 >
                                     <div className="absolute -top-3.5 right-6 bg-emerald-500 text-white text-[11px] font-black px-4 py-1 rounded-full shadow-md">
                                         الخيار الأكثر طلباً 🌟
@@ -158,14 +161,22 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
                                         <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${bundle === 2 ? 'border-emerald-500' : 'border-slate-300'}`}>
                                             {bundle === 2 && <div className="w-3 h-3 rounded-full bg-emerald-500" />}
                                         </div>
+                                        <div className="flex -space-x-4 space-x-reverse shrink-0">
+                                            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-white bg-white shadow-sm relative z-10">
+                                                <img src="/solero/solero.jpg" alt="1st Rechaud" className="w-full h-full object-cover" />
+                                            </div>
+                                            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-white bg-white shadow-sm">
+                                                <img src="/solero/solero.jpg" alt="2nd Rechaud" className="w-full h-full object-cover" />
+                                            </div>
+                                        </div>
                                         <div>
-                                            <h4 className="font-bold text-base text-slate-900">2x Réchaud Électrique (جوج)</h4>
-                                            <p className="text-xs text-emerald-600 font-bold mt-1">وفر 39 درهم إضافية!</p>
+                                            <h4 className="font-bold text-sm sm:text-base text-slate-900 leading-tight">2x Réchaud (جوج)</h4>
+                                            <p className="text-[11px] sm:text-xs text-emerald-600 font-bold mt-1">وفر 39 درهم إضافية!</p>
                                         </div>
                                     </div>
-                                    <div className="text-left">
-                                        <span className="line-through text-slate-400 text-xs font-bold">598 د.م</span><br/>
-                                        <span className="font-black text-2xl text-emerald-600">299 د.م</span>
+                                    <div className="text-left shrink-0 ml-2">
+                                        <span className="line-through text-slate-400 text-[11px] sm:text-xs font-bold">598 د.م</span><br/>
+                                        <span className="font-black text-lg sm:text-2xl text-emerald-600">299 د.م</span>
                                     </div>
                                 </div>
                             </div>
