@@ -26,10 +26,10 @@ export default function TextAndImagesSection() {
 
         {/* Banner 1: Master Lifestyle & Frying Pan */}
         <div className="bg-slate-50 rounded-[2rem] p-6 sm:p-12 border border-slate-100 flex flex-col lg:flex-row items-center gap-12 group transition-all hover:shadow-xl hover:shadow-slate-200/50">
-          <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3] bg-white">
+          <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9] bg-white">
             <img 
-              src="/solero/solero.jpg" 
-              alt="Réchaud RAF 1000W DarLux Lifestyle" 
+              src="/solero/family_banner.jpg" 
+              alt="أطباق بلدية بنكهة مغربية أصيلة - Réchaud RAF" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute top-5 right-5 bg-white text-slate-900 font-black text-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2">
@@ -86,10 +86,10 @@ export default function TextAndImagesSection() {
 
         {/* Banner 3: Electricity vs Butane Gas Cost Savings */}
         <div className="bg-slate-50 rounded-[2rem] p-6 sm:p-12 border border-slate-100 flex flex-col lg:flex-row items-center gap-12 group transition-all hover:shadow-xl hover:shadow-slate-200/50">
-          <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3] bg-white">
+          <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden shadow-lg aspect-[16/9] bg-white">
             <img 
-              src="/solero/HTB19CR9M9zqK1RjSZPxq6A4tVXab.jpg" 
-              alt="Electricity vs Gas Cost Comparison" 
+              src="/solero/gas_banner.jpg" 
+              alt="بوطا ب 50 درهم؟ علاش تخلص كثر؟" 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute top-5 right-5 bg-emerald-500 text-white font-black text-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2">
