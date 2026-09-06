@@ -23,17 +23,17 @@ export default function AdminDashboard() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // Auth Config from Env
+  // Auth Config
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "noor123";
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passwordInput === adminPassword) {
+    if (usernameInput === "octo" && passwordInput === "123456") {
       setIsAuthenticated(true);
     } else {
-      alert("كلمة المرور خاطئة!");
+      alert("معلومات الدخول غير صحيحة!");
     }
   };
 
@@ -64,22 +64,25 @@ export default function AdminDashboard() {
 
   if (!isAuthenticated) return (
     <div className="flex items-center justify-center min-h-[85vh]">
-      <form onSubmit={handleLogin} className="bg-[#1c1f2e] p-10 rounded-2xl shadow-2xl w-full max-w-[400px] flex flex-col items-center border border-white/5">
-        <div className="w-12 h-12 bg-[#fbbf24] text-[#1c1f2e] flex items-center justify-center font-black text-xl rounded-lg mb-6">A</div>
-        <h1 className="text-xl font-bold text-white mb-2">Admin Dashboard</h1>
-        <p className="text-xs text-slate-400 mb-10">Sign in with your admin credentials</p>
+      <form onSubmit={handleLogin} className="bg-[#1c1f2e] p-10 rounded-2xl shadow-2xl w-full max-w-[400px] flex flex-col items-center border border-white/5 relative overflow-hidden">
+        {/* Glow effect behind logo */}
+        <div className="absolute top-0 w-full h-32 bg-[#fbbf24]/5 blur-3xl rounded-full"></div>
         
-        <div className="w-full mb-5">
+        <div className="relative z-10 w-12 h-12 bg-[#fbbf24] text-[#1c1f2e] flex items-center justify-center font-black text-xl rounded-lg mb-6 shadow-[0_0_15px_rgba(251,191,36,0.3)]">D</div>
+        <h1 className="relative z-10 text-xl font-bold text-white mb-2">DarLux Dashboard</h1>
+        <p className="relative z-10 text-xs text-slate-400 mb-10">Sign in with your admin credentials</p>
+        
+        <div className="relative z-10 w-full mb-5">
           <label className="text-[10px] font-bold text-white uppercase tracking-wider mb-2 block text-left w-full">Username</label>
-          <input type="text" value="admin" disabled className="w-full bg-[#131522] border border-white/5 rounded-lg px-4 py-3.5 text-sm text-slate-500 text-left outline-none" dir="ltr" />
+          <input type="text" placeholder="Enter username..." value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} className="w-full bg-[#131522] border border-white/5 rounded-lg px-4 py-3.5 text-sm text-white text-left outline-none focus:border-[#fbbf24] transition-colors" dir="ltr" />
         </div>
 
-        <div className="w-full mb-8">
+        <div className="relative z-10 w-full mb-8">
           <label className="text-[10px] font-bold text-white uppercase tracking-wider mb-2 block text-left w-full">Password</label>
-          <input type="password" placeholder="••••••••" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className="w-full bg-[#131522] border border-white/5 rounded-lg px-4 py-3.5 text-sm text-white text-left outline-none focus:border-[#fbbf24]" dir="ltr" />
+          <input type="password" placeholder="••••••••" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} className="w-full bg-[#131522] border border-white/5 rounded-lg px-4 py-3.5 text-sm text-white text-left outline-none focus:border-[#fbbf24] transition-colors" dir="ltr" />
         </div>
 
-        <button type="submit" className="w-full bg-[#fbbf24] text-[#1c1f2e] rounded-lg py-3.5 text-sm font-bold hover:bg-yellow-400 transition-all">Sign In</button>
+        <button type="submit" className="relative z-10 w-full bg-[#fbbf24] text-[#1c1f2e] rounded-lg py-3.5 text-sm font-bold hover:bg-yellow-400 transition-all shadow-[0_0_15px_rgba(251,191,36,0.2)]">Sign In</button>
       </form>
     </div>
   );

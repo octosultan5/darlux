@@ -16,9 +16,9 @@ function SidebarContent() {
     <aside className="w-64 bg-[#11131e] border-l border-white/5 hidden md:flex flex-col shrink-0 text-slate-300">
       <div className="p-6 border-b border-white/5 flex items-center justify-start gap-3 flex-row-reverse">
         <div className="w-8 h-8 bg-[#fbbf24] rounded-lg flex items-center justify-center text-[#11131e] font-black text-lg shrink-0">
-          A
+          D
         </div>
-        <span className="font-black text-white text-xl tracking-tight text-right w-full">أروى أدمن</span>
+        <span className="font-black text-white text-xl tracking-tight text-right w-full">DarLux Admin</span>
       </div>
 
       <nav className="flex-1 p-4 space-y-2 mt-4 text-sm font-medium">
@@ -64,14 +64,14 @@ export default function AdminLayout({
         <header className="h-16 bg-[#11131e] border-b border-white/5 flex items-center justify-between px-6 shrink-0">
           <div className="flex items-center gap-3 flex-row-reverse">
             <div className="w-10 h-10 bg-[#1c1f2e] rounded-full border border-white/10 flex items-center justify-center">
-              <span className="text-white font-bold text-xs">AD</span>
+              <span className="text-white font-bold text-xs">DX</span>
             </div>
             <div className="text-right flex flex-col">
-              <span className="text-xs font-bold text-white">admin@arwa.store</span>
+              <span className="text-xs font-bold text-white">octo@darlux.ma</span>
               <span className="text-[10px] text-slate-500">Administrator</span>
             </div>
           </div>
-          <div className="md:hidden font-black text-lg text-white">أروى أدمن</div>
+          <div className="md:hidden font-black text-lg text-white">DarLux Admin</div>
         </header>
 
         {/* Scrollable Content */}
