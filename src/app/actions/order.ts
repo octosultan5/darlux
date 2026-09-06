@@ -5,9 +5,14 @@ import { headers } from "next/headers";
 
 export async function submitOrder(orderData: any) {
   try {
-    const headersList = await headers();
-    const forwardedFor = headersList.get("x-forwarded-for");
-    const ip = forwardedFor ? forwardedFor.split(",")[0] : "unknown";
+    let ip = "unknown";
+    try {
+      const headersList = await headers();
+      const forwardedFor = headersList.get("x-forwarded-for");
+      ip = forwardedFor ? forwardedFor.split(",")[0] : "unknown";
+    } catch (e) {
+      console.error("Error fetching headers:", e);
+    }
 
     // Check if IP is blocked in Supabase
     if (ip !== "unknown") {
@@ -20,21 +25,24 @@ export async function submitOrder(orderData: any) {
 
         if (isBlocked) {
           console.warn(`Order from blocked IP ${ip} shadow-banned.`);
-          // Shadow ban: pretend it succeeded so the spammer doesn't bypass it
           return { success: true, data: { id: "shadow-blocked", ...orderData } };
         }
       } catch (dbErr) {
-        // Log error and continue if the blocked_ips table doesn't exist yet or has schema mismatch
         console.error("IP Block Check Error (continuing):", dbErr);
       }
     }
 
-    // 1. Optional: Add your Google Sheets Webhook URL here if you want direct sync
     const GOOGLE_SHEETS_WEBHOOK = process.env.NEXT_PUBLIC_GOOGLE_SHEETS_WEBHOOK;
     
-    // Prepare data
+    // STRICT DATA MAPPING: Only send columns that are definitely in the Supabase schema
+    // We omit product_name and has_bump as they might not exist in the database and cause inserts to fail.
     const finalData = {
-      ...orderData,
+      name: orderData.name,
+      phone: orderData.phone,
+      city: orderData.city,
+      bundle_type: orderData.bundle_type,
+      total_price: orderData.total_price,
+      status: "new",
       ip_address: ip
     };
 
@@ -42,8 +50,17 @@ export async function submitOrder(orderData: any) {
     const { data, error } = await supabase.from("orders").insert([finalData]).select();
 
     if (error) {
-      console.error("Supabase error:", error);
-      return { success: false, error: "فشل في تسجيل الطلب، المرجو المحاولة مرة أخرى." };
+      console.error("Supabase error detail:", error);
+      // Fallback: If ip_address column doesn't exist, try again without it
+      if (error.code === 'PGRST204' || error.message.includes('ip_address')) {
+          const { ip_address, ...fallbackData } = finalData;
+          const retry = await supabase.from("orders").insert([fallbackData as any]).select();
+          if (retry.error) {
+             return { success: false, error: "فشل في تسجيل الطلب (مشكلة في قاعدة البيانات).", details: retry.error.message };
+          }
+          return { success: true, data: retry.data?.[0] };
+      }
+      return { success: false, error: "فشل في تسجيل الطلب، المرجو المحاولة مرة أخرى.", details: error.message };
     }
 
     // 3. Sync to Google Sheets (if webhook exists)
@@ -56,13 +73,12 @@ export async function submitOrder(orderData: any) {
         });
       } catch (sheetError) {
         console.error("Google Sheets Sync Error:", sheetError);
-        // We don't fail the order if sheet fails
       }
     }
 
     return { success: true, data: data?.[0] };
-  } catch (err) {
+  } catch (err: any) {
     console.error("Server Action Error:", err);
-    return { success: false, error: "حدث خطأ في السيرفر." };
+    return { success: false, error: "حدث خطأ في السيرفر.", details: err?.message };
   }
 }
