@@ -8,12 +8,14 @@ import VideoCategories from "./components/VideoCategories";
 import TextAndImagesSection from "./components/TextAndImagesSection";
 import Footer from "./components/Footer";
 import ReviewsSection from "./components/ReviewsSection";
+import PixelEvents from "./components/PixelEvents";
 
 export default function Home() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "212600000000";
 
   return (
     <main className="relative min-h-screen overflow-hidden font-cairo bg-[#0f172a] text-white">
+      <PixelEvents eventName="ViewContent" />
       {/* Sticky Top Promo Bar */}
       <div className="bg-gradient-to-r from-[#c57d5c] via-orange-600 to-[#c57d5c] text-white text-center py-2 font-black text-xs sm:text-sm relative z-50 shadow-md">
         <span className="animate-pulse-slow inline-block">

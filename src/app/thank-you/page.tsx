@@ -1,13 +1,15 @@
 import Link from "next/link";
+import PixelEvents from "../components/PixelEvents";
 
 export const metadata = {
-  title: "شكراً لطلبك | DarLux - Réchaud Électrique",
+  title: "طلبك قيد التأكيد | DarLux - Réchaud Électrique",
   description: "تم استلام طلبك بنجاح.",
 };
 
 export default function ThankYouPage() {
   return (
     <div className="min-h-screen bg-[#0f172a] flex items-center justify-center p-5 rtl">
+      <PixelEvents eventName="Purchase" data={{ currency: "MAD", value: 169.00 }} />
       <div className="max-w-2xl w-full bg-slate-900 rounded-3xl shadow-2xl overflow-hidden text-center relative border border-slate-800 text-white">
         <div className="bg-gradient-to-r from-[#f48020] via-orange-500 to-[#f48020] h-32 w-full absolute top-0 left-0"></div>
         <div className="relative z-10 pt-16 pb-12 px-8">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { submitOrder } from "../actions/order";
+import PixelEvents from "./PixelEvents";
 
 export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
     const router = useRouter();
@@ -83,6 +84,7 @@ export default function CheckoutForm({ id = "checkout" }: { id?: string }) {
 
     return (
         <section className="bg-slate-50 py-16 lg:py-24 relative rtl border-t border-slate-200" id={id}>
+            <PixelEvents eventName="InitiateCheckout" />
             
             <div className="container mx-auto px-4 max-w-5xl relative z-10">
                 
