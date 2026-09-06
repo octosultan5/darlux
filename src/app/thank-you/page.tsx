@@ -1,17 +1,17 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "شكرا لطلبك | نور USB",
+  title: "شكراً لطلبك | DarLux - Réchaud Électrique",
   description: "تم استلام طلبك بنجاح.",
 };
 
 export default function ThankYouPage() {
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-5 rtl">
-      <div className="max-w-2xl w-full bg-white rounded-3xl shadow-xl overflow-hidden text-center relative border border-slate-100">
-        <div className="bg-emerald-500 h-32 w-full absolute top-0 left-0"></div>
+    <div className="min-h-screen bg-[#0f172a] flex items-center justify-center p-5 rtl">
+      <div className="max-w-2xl w-full bg-slate-900 rounded-3xl shadow-2xl overflow-hidden text-center relative border border-slate-800 text-white">
+        <div className="bg-gradient-to-r from-[#f48020] via-orange-500 to-[#f48020] h-32 w-full absolute top-0 left-0"></div>
         <div className="relative z-10 pt-16 pb-12 px-8">
-          <div className="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center shadow-lg mb-8 border-4 border-emerald-50 text-emerald-500">
+          <div className="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center shadow-xl mb-8 border-4 border-[#f48020]/30 text-[#f48020]">
             <i className="fa-solid fa-check text-5xl"></i>
           </div>
           
