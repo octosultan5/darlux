@@ -1,0 +1,1 @@
+export default function Customers() { return <div className="p-6 text-slate-500 font-bold text-xl">قاعدة بيانات العملاء (قيد التطوير)...</div>; }
