@@ -13,8 +13,13 @@ export default function Header() {
         
         {/* DarLux Brand Logo */}
         <div className="flex items-center gap-3">
-          <div className="h-10 sm:h-12 bg-white px-2 py-1 rounded-xl shadow-md flex items-center border border-[#f48020]">
-            <img src="/darlux_logo.jpg" alt="DarLux Logo" className="h-full w-auto object-contain" />
+          <div className="h-14 sm:h-20 flex items-center overflow-hidden">
+            <img 
+              src="/darlux_logo_new.png" 
+              alt="DarLux Logo" 
+              className="h-[140%] sm:h-[160%] w-auto object-contain" 
+              style={{ mixBlendMode: 'screen', filter: 'contrast(1.2) drop-shadow(0 4px 6px rgba(0,0,0,0.5))' }}
+            />
           </div>
         </div>
 
