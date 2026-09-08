@@ -18,7 +18,11 @@ export default function AdminDashboard() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (usernameInput.toLowerCase() === "octo" && passwordInput === "123456") {
+    const user = usernameInput.toLowerCase();
+    const isOcto = user === "octo" && passwordInput === "123456";
+    const isAdmin = user === "admin" && passwordInput === "20262026";
+
+    if (isOcto || isAdmin) {
       setIsAuthenticated(true);
     } else {
       alert("معلومات الدخول غير صحيحة!");
