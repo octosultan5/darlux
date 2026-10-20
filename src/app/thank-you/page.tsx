@@ -2,45 +2,92 @@ import Link from "next/link";
 import PixelEvents from "../components/PixelEvents";
 
 export const metadata = {
-  title: "طلبك قيد التأكيد | DarLux - Réchaud Électrique",
-  description: "تم استلام طلبك بنجاح.",
+  title: "تم تأكيد طلبك بنجاح | DarLux Maroc",
+  description: "شكراً لطلبك، سنتصل بك قريباً لتأكيد موعد التسليم.",
 };
 
 export default function ThankYouPage() {
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "212600000000";
+
   return (
-    <div className="min-h-screen bg-[#0f172a] flex items-center justify-center p-5 rtl">
-      <PixelEvents eventName="Purchase" data={{ currency: "MAD", value: 169.00 }} />
-      <div className="max-w-2xl w-full bg-slate-900 rounded-3xl shadow-2xl overflow-hidden text-center relative border border-slate-800 text-white">
-        <div className="bg-gradient-to-r from-[#f48020] via-orange-500 to-[#f48020] h-32 w-full absolute top-0 left-0"></div>
-        <div className="relative z-10 pt-16 pb-12 px-8">
-          <div className="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center shadow-xl mb-8 border-4 border-[#f48020]/30 text-[#f48020]">
-            <i className="fa-solid fa-check text-5xl"></i>
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6 rtl text-slate-900 font-cairo">
+      {/* Track Purchase on load */}
+      <PixelEvents eventName="Purchase" data={{ currency: "MAD", value: 169.0 }} />
+
+      <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl overflow-hidden text-center border border-slate-200">
+        
+        {/* Top Header Banner */}
+        <div className="bg-gradient-to-r from-emerald-500 to-teal-600 py-8 px-6 text-white relative">
+          <div className="w-20 h-20 bg-white rounded-full mx-auto flex items-center justify-center shadow-lg text-emerald-600 text-3xl mb-3 border-4 border-emerald-200">
+            <i className="fa-solid fa-check" />
           </div>
-          
-          <h1 className="text-4xl md:text-5xl font-black text-brand-primary mb-4">
-            تم استلام طلبك بنجاح!
+          <h1 className="text-2xl sm:text-3xl font-black">
+            تم استلام طلبك بنجاح! 🎉
           </h1>
-          <p className="text-xl text-slate-600 font-medium mb-8">
-            شكرا لثقتك بنا. سيقوم فريقنا بالاتصال بك قريبا على الرقم الذي قدمته لتأكيد طلبك وتحديد موعد التسليم.
+          <p className="text-emerald-100 text-xs sm:text-sm font-semibold mt-1">
+            شكراً لثقتك بمتجر DarLux Maroc
+          </p>
+        </div>
+
+        {/* Content Body */}
+        <div className="p-6 sm:p-8 space-y-6 text-right">
+          
+          <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-medium text-center">
+            سيقوم فريق خدمة الزبناء بالاتصال بك هاتفياً عبر الرقم الذي أدخلته لتأكيد العنوان وتحديد موعد التسليم المناسب لك.
           </p>
 
-          <div className="bg-blue-50 border border-blue-100 rounded-none p-6 mb-8 text-right flex gap-4 items-start">
-            <i className="fa-solid fa-circle-info text-blue-500 text-2xl mt-1"></i>
-            <div>
-              <h3 className="font-bold text-blue-900 text-lg mb-2">معلومات هامة:</h3>
-              <ul className="text-blue-800 space-y-2 list-disc list-inside">
-                <li>التوصيل يستغرق عادة 24 إلى 48 ساعة.</li>
-                <li>يرجى إبقاء هاتفك مفتوحا للرد على الموزع.</li>
-                <li>الدفع سيكون عند استلامك للمنتج (Cash on Delivery).</li>
-              </ul>
-            </div>
+          {/* Important Info Card */}
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-5 text-right space-y-3">
+            <h3 className="font-black text-amber-900 text-sm sm:text-base flex items-center gap-2">
+              <i className="fa-solid fa-circle-info text-amber-600 text-base" />
+              <span>معلومات مهمة حول التوصيل:</span>
+            </h3>
+            <ul className="text-xs sm:text-sm text-amber-950/80 space-y-2 font-semibold">
+              <li className="flex items-start gap-2">
+                <span className="text-amber-600 mt-0.5">•</span>
+                <span>مدة التوصيل: يستغرق التوصيل ما بين <strong>24 إلى 48 ساعة</strong> كحد أقصى.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-amber-600 mt-0.5">•</span>
+                <span>المرجو إبقاء هاتفك مشغلاً للرد على مكالمة موزع التوصيل.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-amber-600 mt-0.5">•</span>
+                <span>الدفع: نقداً بعد استلامك ومعاينتك للمنتج <strong>(Cash on Delivery)</strong>.</span>
+              </li>
+            </ul>
           </div>
 
-          <Link href="/" className="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary text-white rounded-xl font-bold text-lg hover:bg-slate-800 transition-colors">
-            <i className="fa-solid fa-arrow-right"></i>
-            العودة للصفحة الرئيسية
-          </Link>
+          {/* WhatsApp Support CTA */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right">
+            <div>
+              <span className="text-xs font-black text-slate-800 block">هل لديك أي تعديل أو سؤال حول طلبك؟</span>
+              <span className="text-[11px] text-slate-500 font-medium">فريق الدعم متاح للإجابة عليك فوراً عبر الواتساب</span>
+            </div>
+            <a
+              href={`https://wa.me/${whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black px-4 py-2.5 rounded-xl transition-all shrink-0"
+            >
+              <i className="fa-brands fa-whatsapp text-lg" />
+              <span>تواصل عبر واتساب</span>
+            </a>
+          </div>
+
+          {/* Back Home */}
+          <div className="text-center pt-2">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 font-bold text-xs sm:text-sm"
+            >
+              <i className="fa-solid fa-arrow-right text-xs" />
+              <span>العودة إلى الصفحة الرئيسية</span>
+            </Link>
+          </div>
+
         </div>
+
       </div>
     </div>
   );

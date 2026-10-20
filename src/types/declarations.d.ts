@@ -1,0 +1,36 @@
+declare module 'lucide-react' {
+  export const Headset: any;
+  export const PhoneCall: any;
+  export const MessageSquare: any;
+  export const ExternalLink: any;
+  export const CheckCircle2: any;
+  export const Truck: any;
+  export const AlertTriangle: any;
+  export const Clock: any;
+  export const TrendingUp: any;
+  export const DollarSign: any;
+  export const Package: any;
+  export const UserCheck: any;
+  export const XCircle: any;
+  export const Search: any;
+  export const Sparkles: any;
+  export const LayoutDashboard: any;
+  export const ShoppingBag: any;
+  export const Users: any;
+  export const BarChart3: any;
+  export const Settings: any;
+  export const LogOut: any;
+  export const Download: any;
+  export const Check: any;
+  export const Star: any;
+  export const ShieldCheck: any;
+  export const ArrowRight: any;
+  export const ChevronDown: any;
+  export const ChevronUp: any;
+  export const Menu: any;
+  export const X: any;
+  export const Filter: any;
+  export const RefreshCw: any;
+  const content: any;
+  export default content;
+}

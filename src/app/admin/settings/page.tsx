@@ -1,1 +1,0 @@
-export default function Settings() { return <div className="p-6 text-slate-500 font-bold text-xl">إعدادات المتجر (قيد التطوير)...</div>; }
