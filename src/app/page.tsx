@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 font-cairo antialiased selection:bg-amber-200">
       {/* 1. Track ViewContent event once */}
-      <PixelEvents eventName="ViewContent" data={{ content_name: "Réchaud RAF 1000W", value: 169, currency: "MAD" }} />
+      <PixelEvents eventName="ViewContent" data={{ content_name: "Réchaud RAF 1500W", value: 129, currency: "MAD" }} />
 
       {/* 2. Top Urgency Banner & Header */}
       <UrgencyHeader />

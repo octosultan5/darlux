@@ -14,7 +14,7 @@ export default function UrgencyHeader() {
         <div className="container mx-auto flex items-center justify-center gap-2">
           <span className="inline-block animate-pulse">🔥</span>
           <span>
-            تخفيض حصري 43% + توصيل فابور لجميع مدن المغرب والدفع بعد المعاينة عند الاستلام 🇲🇦
+            تخفيض غير مسبوق: ريشو فائق القوة 1500W بـ 129 درهم فقط + توصيل مجاني والدفع بعد المعاينة عند الاستلام 🇲🇦
           </span>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function UrgencyHeader() {
               <span className="text-xs font-bold text-slate-500 block">المتجر الرسمي بالمغرب</span>
               <span className="text-xs font-black text-emerald-600 flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-ping"></span>
-                طلب مباشر من المستودع
+                طلب مباشر من المستودع (نسخة 1500W الأصلية)
               </span>
             </div>
           </div>
@@ -56,7 +56,7 @@ export default function UrgencyHeader() {
               onClick={scrollToCheckout}
               className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-xs sm:text-sm px-4 sm:px-6 py-2.5 rounded-xl shadow-md flex items-center gap-2 active:scale-95 transition-all"
             >
-              <span>أطلب الآن بـ 169 د.م</span>
+              <span>أطلب الآن بـ 129 د.م</span>
               <i className="fa-solid fa-arrow-down" />
             </button>
           </div>

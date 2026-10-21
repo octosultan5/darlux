@@ -12,7 +12,7 @@ export default function ThankYouPage() {
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 sm:p-6 rtl text-slate-900 font-cairo">
       {/* Track Purchase on load */}
-      <PixelEvents eventName="Purchase" data={{ currency: "MAD", value: 169.0 }} />
+      <PixelEvents eventName="Purchase" data={{ currency: "MAD", value: 129.0 }} />
 
       <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl overflow-hidden text-center border border-slate-200">
         
@@ -25,7 +25,7 @@ export default function ThankYouPage() {
             تم استلام طلبك بنجاح! 🎉
           </h1>
           <p className="text-emerald-100 text-xs sm:text-sm font-semibold mt-1">
-            شكراً لثقتك بمتجر DarLux Maroc
+            شكراً لثقتك بمتجر DarLux Maroc - ريشو RAF 1500W الأصلي
           </p>
         </div>
 

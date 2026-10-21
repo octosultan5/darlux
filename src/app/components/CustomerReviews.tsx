@@ -6,7 +6,7 @@ export default function CustomerReviews() {
       name: "كمال المنصوري",
       city: "الدار البيضاء",
       date: "منذ 3 أيام",
-      text: "صراحة ريشو ناضي بزاف! كينفعني فـ الخدمة نسخن بيه الماكلة ونوجد أتاي فـ دقائق. كيسخن بسرعة واقتصادي فـ الضو، ما بقيتش هاز هم البوطا.",
+      text: "صراحة ريشو 1500W ناضي بزاف! كينفعني فـ الخدمة نسخن بيه الماكلة ونوجد أتاي فـ دقائق. كيسخن بسرعة واقتصادي فـ الضو، ما بقيتش هاز هم البوطا.",
       stars: 5,
     },
     {
@@ -20,14 +20,14 @@ export default function CustomerReviews() {
       name: "حمزة العماري",
       city: "طنجة",
       date: "منذ أسبوع",
-      text: "الجودة ممتازة، إطار من الستانلس ستيل متين وكابل غليظ آمن. جربت فيه غليان الماء فـ 4 دقائق وسلقت فيه البيض. شكراً لموزع التوصيل على المعاملة الطيبة.",
+      text: "الجودة ممتازة، إطار من الستانلس ستيل متين وكابل غليظ آمن. جربت فيه غليان الماء فـ 3 دقائق وسلقت فيه البيض. شكراً لموزع التوصيل على المعاملة الطيبة.",
       stars: 5,
     },
     {
       name: "فاطمة الزهراء",
       city: "مراكش",
       date: "منذ أسبوعين",
-      text: "المنتج رائع والحرارة ديالو قوية. عجبني أنه كيحبس بوحدو ملي كيسخن، يعني آمن 100%. كنصح بيه أي واحد باغي يتهنى من عذاب البوطة.",
+      text: "المنتج رائع والحرارة ديالو 1500W قوية تبارك الله. عجبني أنه كيحبس بوحدو ملي كيسخن، يعني آمن 100%. كنصح بيه أي واحد باغي يتهنى من عذاب البوطة.",
       stars: 5,
     },
   ];
@@ -46,7 +46,7 @@ export default function CustomerReviews() {
             شهادات حقيقية ⭐
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
-            تجارب زبنائنا مع <span className="text-amber-600">ريشو DarLux</span>
+            تجارب زبنائنا مع <span className="text-amber-600">ريشو DarLux 1500W</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
             أكثر من 1,480 زبون يثقون في جودة منتجاتنا في جميع أنحاء المغرب
@@ -96,7 +96,7 @@ export default function CustomerReviews() {
             onClick={scrollToCheckout}
             className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-sm sm:text-base px-8 py-3.5 rounded-2xl shadow-md transition-all active:scale-95 inline-flex items-center gap-2"
           >
-            <span>انضم لزبنائنا السعداء واطلب الآن بـ 169 درهم</span>
+            <span>انضم لزبنائنا السعداء واطلب الآن بـ 129 درهم</span>
             <i className="fa-solid fa-arrow-up text-xs" />
           </button>
         </div>

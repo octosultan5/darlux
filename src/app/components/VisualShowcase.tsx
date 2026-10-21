@@ -8,17 +8,17 @@ export default function VisualShowcase() {
   const cards = [
     {
       img: "/solero/He9e36218ab68467bae1f5a9a224ef20fS.jpg",
-      tag: "سخونية فورية ⚡",
+      tag: "سخونية صاروخية 1500W ⚡",
       tagColor: "bg-amber-500 text-slate-950",
-      title: "غلي الماء والطهي فـ أقل من 5 دقائق",
-      desc: "بفضل قوة 1000W وقرص التسخين الحلزوني الذكي، الريشو كيسخن فـ ثواني معدودة وكيخليك توجد أتاي، قهوة، مقليات، أو تسلق البيض فـ رمشة عين وبدون أي تعب.",
+      title: "غلي الماء والطهي فـ أقل من 3 دقائق",
+      desc: "بفضل قوة 1500W الفائقة وقرص التسخين الحلزوني الذكي، الريشو كيسخن فـ ثواني معدودة وكيخليك توجد أتاي، قهوة، مقليات، أو طاجين بلدي فـ رمشة عين وبدون أي تعب.",
     },
     {
       img: "/solero/gas_banner.jpg",
-      tag: "اقتصاد كبير 💰",
+      tag: "اقتصاد حقيقي 💰",
       tagColor: "bg-emerald-600 text-white",
       title: "ودع غلاء ومشاكل البوطة نهائياً",
-      desc: "علاش تخلص 50 درهم فـ البوطة كل أسبوعين وتبقى مهدد تسالي ليك وسط الطياب؟ ريشو كهربائي عملي كيستهلك قليل فـ الضو (اقتصاد حتى لـ 40%) وآمن 100% بدون أي تسريب للغاز.",
+      desc: "علاش تخلص 50 درهم فـ البوطة كل أسبوعين وتبقى مهدد تسالي ليك وسط الطياب؟ ريشو كهربائي 1500W عملي كيستهلك قليل فـ الضو (اقتصاد حتى لـ 40%) وآمن 100% بدون أي تسريب للغاز.",
     },
     {
       img: "/solero/family_banner.jpg",
@@ -39,10 +39,10 @@ export default function VisualShowcase() {
             لماذا يفضله آلاف المغاربة؟ 🇲🇦
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
-            مميزات تجعل <span className="text-amber-600">ريشو RAF 1000W</span> خيارك الأفضل
+            مميزات تجعل <span className="text-amber-600">ريشو RAF 1500W</span> خيارك الأفضل
           </h2>
           <p className="text-sm text-slate-600 max-w-xl mx-auto mt-2 font-medium">
-            جهاز متين صمم ليوفر لك السرعة، الأمان، والتوفير الحقيقي في مصاريف الطاقة اليومية.
+            جهاز متين صمم بقوة 1500 واط ليوفر لك السرعة، الأمان، والتوفير الحقيقي في مصاريف الطاقة اليومية.
           </p>
         </div>
 
@@ -80,7 +80,7 @@ export default function VisualShowcase() {
                     onClick={scrollToCheckout}
                     className="inline-flex items-center gap-2 bg-slate-900 hover:bg-amber-600 text-white text-xs sm:text-sm font-black px-5 py-2.5 rounded-xl transition-colors shadow-sm"
                   >
-                    <span>أطلب الآن بـ 169 درهم</span>
+                    <span>أطلب الآن بـ 129 درهم</span>
                     <i className="fa-solid fa-cart-shopping text-xs" />
                   </button>
                 </div>

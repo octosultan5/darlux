@@ -10,10 +10,10 @@ export default function ProductHeroCheckout() {
 
   // Gallery state
   const images = [
-    { src: "/solero/hero_banner.jpg", title: "ريشو كهربائي عملي وأصلي RAF 1000W" },
-    { src: "/solero/gas_banner.jpg", title: "ودع غلاء ومشاكل البوطا واقتصاد 40%" },
+    { src: "/solero/hero_banner.jpg", title: "ريشو كهربائي عملي وأصلي RAF 1500W فائق القوة" },
+    { src: "/solero/gas_banner.jpg", title: "ودع غلاء ومشاكل البوطا واقتصاد 40% فـ الطاقة" },
     { src: "/solero/solero.jpg", title: "تصميم متين من الستانلس ستيل المقاوم للصدأ" },
-    { src: "/solero/He9e36218ab68467bae1f5a9a224ef20fS.jpg", title: "غليان سريع فـ أقل من 5 دقائق" },
+    { src: "/solero/He9e36218ab68467bae1f5a9a224ef20fS.jpg", title: "غليان فوري فـ أقل من 3 دقائق بقوة 1500W" },
   ];
   const [selectedImage, setSelectedImage] = useState(0);
 
@@ -29,6 +29,14 @@ export default function ProductHeroCheckout() {
   // Pixel trigger tracking flag (fires InitiateCheckout only once per session)
   const hasTriggeredCheckout = useRef(false);
 
+  const calculatePrice = () => {
+    let p = bundle === 2 ? 229 : 129;
+    if (orderBump) p += 59;
+    return p;
+  };
+
+  const price = calculatePrice();
+
   const handleInteraction = () => {
     if (!hasTriggeredCheckout.current) {
       hasTriggeredCheckout.current = true;
@@ -38,14 +46,6 @@ export default function ProductHeroCheckout() {
       });
     }
   };
-
-  const calculatePrice = () => {
-    let p = bundle === 2 ? 299 : 169;
-    if (orderBump) p += 59;
-    return p;
-  };
-
-  const price = calculatePrice();
 
   // Validate Moroccan phone: starts with 06 or 07, exactly 10 digits
   const cleanPhone = phone.replace(/\s/g, "");
@@ -80,7 +80,7 @@ export default function ProductHeroCheckout() {
         bundle_type: bundle,
         total_price: price,
         has_bump: orderBump,
-        product_name: "Réchaud Électrique RAF 1000W - DarLux",
+        product_name: "Réchaud Électrique RAF 1500W - DarLux",
       });
 
       if (!result.success) {
@@ -108,10 +108,10 @@ export default function ProductHeroCheckout() {
           </div>
           <div className="flex-1">
             <span className="font-black text-sm sm:text-base block">
-              هام جداً: هذا العرض الترويجي لن يتكرر!
+              عرض خاص محدود: ريشو 1500W الأصلي بـ 129 درهم فقط!
             </span>
             <span className="text-xs sm:text-sm text-red-600 font-semibold">
-              الكمية المتوفرة بسعر التخفيض محدودة جداً في المستودع وسيتم إغلاق العرض فور نفاد المخزون.
+              الكمية المتوفرة بهذا السعر الترويجي الاستثنائي شارفت على النفاد في المستودع.
             </span>
           </div>
         </div>
@@ -130,7 +130,10 @@ export default function ProductHeroCheckout() {
                 className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
               />
               <div className="absolute top-3 right-3 bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
-                <span>خصم 43%</span>
+                <span>تخفيض خاص 50%</span>
+              </div>
+              <div className="absolute top-3 left-3 bg-amber-500 text-slate-950 font-black text-xs px-3 py-1 rounded-full shadow-md">
+                نسخة 1500W الأصلية ⚡
               </div>
               <div className="absolute bottom-3 left-3 bg-slate-950/80 backdrop-blur-sm text-amber-300 font-bold text-xs px-3 py-1 rounded-lg">
                 {images[selectedImage].title}
@@ -166,19 +169,19 @@ export default function ProductHeroCheckout() {
               </div>
 
               <h1 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
-                ريشو كهربائي عملي وأصلي <span className="text-amber-600">RAF 1000W</span>
+                ريشو كهربائي عملي وأصلي <span className="text-amber-600">RAF 1500W</span> فائق القوة
               </h1>
               <p className="text-sm text-slate-600 mt-1 font-medium">
-                بلاكة الطهي والتسخين السريعة - بديل البوطة الذكي، سخونية فورية واقتصاد 40% فـ الطاقة.
+                بلاكة الطهي والتسخين السريعة بقوة 1500 واط - بديل البوطة الذكي، سخونية فورية واقتصاد 40% فـ الطاقة.
               </p>
             </div>
 
             {/* Price Box */}
             <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
               <div>
-                <span className="text-xs text-slate-400 line-through block font-bold">299 درهم</span>
+                <span className="text-xs text-slate-400 line-through block font-bold">249 درهم</span>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl sm:text-4xl font-black text-slate-950 font-mono">169</span>
+                  <span className="text-3xl sm:text-4xl font-black text-slate-950 font-mono">129</span>
                   <span className="text-base font-black text-amber-700">درهم مغربي</span>
                 </div>
               </div>
@@ -196,7 +199,7 @@ export default function ProductHeroCheckout() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 text-xs sm:text-sm font-bold text-slate-700">
               <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
                 <i className="fa-solid fa-bolt text-amber-500 text-base" />
-                <span>حرارة فورية بقوة 1000W مع ترموستات ذكي</span>
+                <span>قوة هائلة 1500W مع 5 درجات للتحكم بالترموستات</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
                 <i className="fa-solid fa-piggy-bank text-emerald-500 text-base" />
@@ -204,11 +207,11 @@ export default function ProductHeroCheckout() {
               </div>
               <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
                 <i className="fa-solid fa-utensils text-orange-500 text-base" />
-                <span>متعدد الاستعمالات: أتاي، قهوة، مقليات، وشوربة</span>
+                <span>متعدد الاستعمالات: طواجن، أتاي، قهوة، مقليات، وشوربة</span>
               </div>
               <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
                 <i className="fa-solid fa-shield-halved text-blue-500 text-base" />
-                <span>هيكل متين مقاوم للصدأ مع نظام أمان متطور</span>
+                <span>ستانلس ستيل متين مقاوم للصدأ مع نظام أمان متطور</span>
               </div>
             </div>
 
@@ -258,13 +261,13 @@ export default function ProductHeroCheckout() {
                       {bundle === 1 && <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />}
                     </div>
                     <div>
-                      <h3 className="font-black text-sm text-slate-900">1x ريشو كهربائي RAF</h3>
-                      <span className="text-[11px] text-slate-500 font-bold block">توصيل مجاني 🚚</span>
+                      <h3 className="font-black text-sm text-slate-900">1x ريشو كهربائي RAF 1500W</h3>
+                      <span className="text-[11px] text-slate-500 font-bold block">توصيل مجاني فابور 🚚</span>
                     </div>
                   </div>
                   <div className="text-left font-mono">
-                    <span className="line-through text-[11px] text-slate-400 font-bold block">299 د.م</span>
-                    <span className="text-lg font-black text-amber-600">169 د.م</span>
+                    <span className="line-through text-[11px] text-slate-400 font-bold block">249 د.م</span>
+                    <span className="text-lg font-black text-amber-600">129 د.م</span>
                   </div>
                 </div>
 
@@ -292,13 +295,13 @@ export default function ProductHeroCheckout() {
                       {bundle === 2 && <div className="w-2.5 h-2.5 rounded-full bg-emerald-600" />}
                     </div>
                     <div>
-                      <h3 className="font-black text-sm text-slate-900">2x ريشو كهربائي (حبتين)</h3>
-                      <span className="text-[11px] text-emerald-700 font-bold block">توفير إضافي 39 درهم + توصيل فابور</span>
+                      <h3 className="font-black text-sm text-slate-900">2x ريشو 1500W (حبتين)</h3>
+                      <span className="text-[11px] text-emerald-700 font-bold block">توفير إضافي 29 درهم + توصيل فابور</span>
                     </div>
                   </div>
                   <div className="text-left font-mono">
-                    <span className="line-through text-[11px] text-slate-400 font-bold block">598 د.م</span>
-                    <span className="text-lg font-black text-emerald-600">299 د.م</span>
+                    <span className="line-through text-[11px] text-slate-400 font-bold block">498 د.م</span>
+                    <span className="text-lg font-black text-emerald-600">229 د.م</span>
                   </div>
                 </div>
               </div>

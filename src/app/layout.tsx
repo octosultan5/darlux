@@ -3,8 +3,8 @@ import "./globals.css";
 import Pixels from "./components/Pixels";
 
 export const metadata: Metadata = {
-  title: "DarLux - Réchaud Électrique RAF 1000W | بلاكة كهربائية للطهي والتسخين",
-  description: "بلاكة كهربائية محمولة RAF 1000W - بديل الفرن والبوطا، اقتصاد 40% فـ الكهرباء وسخونية فورية بـ 169 درهم مع توصيل مجاني والدفع بعد المعاينة عند الاستلام بالمغرب.",
+  title: "DarLux - Réchaud Électrique RAF 1500W | بلاكة كهربائية فائقة القوة للطهي والتسخين",
+  description: "بلاكة كهربائية محمولة فائقة القوة RAF 1500W - بديل الفرن والبوطا، اقتصاد 40% فـ الكهرباء وسخونية فورية بـ 129 درهم فقط مع توصيل مجاني والدفع بعد المعاينة عند الاستلام بالمغرب.",
 };
 
 export default function RootLayout({

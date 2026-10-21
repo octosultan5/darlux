@@ -12,7 +12,7 @@ export default function TrustBadges() {
       icon: "fa-solid fa-shield-check",
       color: "text-amber-600 bg-amber-100",
       title: "ضمانة 100% مضمونة",
-      desc: "منتج أصلي RAF 1000W مع إمكانية التبديل والاسترجاع في حالة وجود أي عيب مصنعي.",
+      desc: "منتج أصلي RAF 1500W فائق القوة مع إمكانية التبديل والاسترجاع في حالة وجود أي عيب مصنعي.",
     },
     {
       icon: "fa-solid fa-truck-fast",
