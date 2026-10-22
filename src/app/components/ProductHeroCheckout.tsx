@@ -8,12 +8,12 @@ import { trackPixelEvent } from "./PixelEvents";
 export default function ProductHeroCheckout() {
   const router = useRouter();
 
-  // Gallery state
+  // Gallery state with newly generated high-converting creatives
   const images = [
-    { src: "/solero/hero_banner.jpg", title: "ريشو كهربائي عملي وأصلي RAF 1500W فائق القوة" },
-    { src: "/solero/gas_banner.jpg", title: "ودع غلاء ومشاكل البوطا واقتصاد 40% فـ الطاقة" },
-    { src: "/solero/solero.jpg", title: "تصميم متين من الستانلس ستيل المقاوم للصدأ" },
-    { src: "/solero/He9e36218ab68467bae1f5a9a224ef20fS.jpg", title: "غليان فوري فـ أقل من 3 دقائق بقوة 1500W" },
+    { src: "/creatives/hero_offer_129dh.png", title: "ريشو كهربائي أصلي RAF 1500W بـ 129 درهم فقط" },
+    { src: "/creatives/mother_kitchen_relief.png", title: "راحة وأمان الوالدة فـ الكوزينة بدون ثقل البوطة" },
+    { src: "/creatives/family_tajine_feast.png", title: "طاجين سخون وأطباق مغربية أصيلة تجمع العائلة" },
+    { src: "/creatives/turbo_boil_1500w.png", title: "سخونية صاروخية 1500W - غليان فـ أقل من 3 دقائق" },
   ];
   const [selectedImage, setSelectedImage] = useState(0);
 
