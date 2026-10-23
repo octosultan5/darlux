@@ -7,7 +7,7 @@ export default function VisualShowcase() {
 
   const cards = [
     {
-      img: "/creatives/turbo_boil_1500w.png",
+      img: "/creatives/turbo_boil.png",
       tag: "سخونية صاروخية 1500W ⚡",
       tagColor: "bg-amber-500 text-slate-950",
       title: "غلي الماء والطهي فـ أقل من 3 دقائق",

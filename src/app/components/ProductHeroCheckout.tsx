@@ -13,7 +13,7 @@ export default function ProductHeroCheckout() {
     { src: "/creatives/hero_offer_129dh.png", title: "ريشو كهربائي أصلي RAF 1500W بـ 129 درهم فقط" },
     { src: "/creatives/mother_kitchen_relief.png", title: "راحة وأمان الوالدة فـ الكوزينة بدون ثقل البوطة" },
     { src: "/creatives/family_tajine_feast.png", title: "طاجين سخون وأطباق مغربية أصيلة تجمع العائلة" },
-    { src: "/creatives/turbo_boil_1500w.png", title: "سخونية صاروخية 1500W - غليان فـ أقل من 3 دقائق" },
+    { src: "/creatives/turbo_boil.png", title: "سخونية صاروخية 1500W - غليان فـ أقل من 3 دقائق" },
   ];
   const [selectedImage, setSelectedImage] = useState(0);
 
