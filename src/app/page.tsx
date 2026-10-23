@@ -1,7 +1,7 @@
 import UrgencyHeader from "./components/UrgencyHeader";
-import ProductHeroCheckout from "./components/ProductHeroCheckout";
+import HeroStorySection from "./components/HeroStorySection";
 import TrustBadges from "./components/TrustBadges";
-import VisualShowcase from "./components/VisualShowcase";
+import VisualStorySection from "./components/VisualStorySection";
 import FAQSection from "./components/FAQSection";
 import CustomerReviews from "./components/CustomerReviews";
 import Footer from "./components/Footer";
@@ -19,14 +19,14 @@ export default function Home() {
       {/* 2. Top Urgency Banner & Header */}
       <UrgencyHeader />
 
-      {/* 3. Hero & Above-The-Fold Order Form (Inspired by Bricoma/Lightfunnels) */}
-      <ProductHeroCheckout />
+      {/* 3. Hero Story Section (Full-Width Master Graphic Poster + Top Order Form) */}
+      <HeroStorySection />
 
-      {/* 4. Four Core Trust Badges */}
+      {/* 4. Four Core Moroccan Trust Badges */}
       <TrustBadges />
 
-      {/* 5. Three High-Impact Visual Demonstration Cards */}
-      <VisualShowcase />
+      {/* 5. Catchy Visual Story Section (Full-Width Creatives: Speed, Mother's Comfort, Family Tajine + Bottom Form) */}
+      <VisualStorySection />
 
       {/* 6. Frequently Asked Questions Accordion */}
       <FAQSection />
