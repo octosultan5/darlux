@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { submitOrder } from "../actions/order";
 import { trackPixelEvent } from "../components/PixelEvents";
 
@@ -113,11 +112,11 @@ export default function RedChauPage() {
       {/* MAIN CONTAINER: Centered funnel container (ShoopBeam YouCan style, max-w-[560px] on desktop, 100% on mobile) */}
       <main className="w-full max-w-[560px] mx-auto bg-white min-h-screen shadow-2xl relative pb-28">
 
-        {/* 2. HERO IMAGE (Displayed As-Is, 100% Width Edge-to-Edge) */}
+        {/* 2. HERO IMAGE SLICE (Displayed As-Is, 100% Width Edge-to-Edge) */}
         <div className="w-full relative bg-slate-900 cursor-pointer" onClick={scrollToCheckout}>
           <img
-            src="/creatives/hero_offer_129dh.png"
-            alt="Réchaud RAF 1500W عرض خاص 129 درهم"
+            src="/creatives/shoop_hero.jpg"
+            alt="الفرن الكهربائي المحمول RAF 1500W عرض 129 درهم"
             className="w-full h-auto block"
             loading="eager"
           />
@@ -405,135 +404,45 @@ export default function RedChauPage() {
         {/* 4. BENEFIT SLICE 1: TURBO BOILING SPEED 1500W (Full Width As-Is) */}
         <section className="w-full relative mt-4 cursor-pointer" onClick={scrollToCheckout}>
           <img
-            src="/creatives/turbo_boil.png"
+            src="/creatives/shoop_speed.jpg"
             alt="سرعة الغليان الفائقة 1500 واط غليان في 3 دقائق"
             className="w-full h-auto block"
             loading="lazy"
           />
         </section>
 
-        {/* 5. BENEFIT SLICE 2: MOTHER KITCHEN RELIEF (Full Width As-Is) */}
+        {/* 5. BENEFIT SLICE 2: MOTHER KITCHEN RELIEF & SAFETY (Full Width As-Is) */}
         <section className="w-full relative cursor-pointer" onClick={scrollToCheckout}>
           <img
-            src="/creatives/mother_kitchen_relief.png"
+            src="/creatives/shoop_mother.jpg"
             alt="راحة الوالدة بدون ثقل البوطة والغاز"
             className="w-full h-auto block"
             loading="lazy"
           />
         </section>
 
-        {/* 6. BENEFIT SLICE 3: FAMILY TAJINE FEAST (Full Width As-Is) */}
+        {/* 6. BENEFIT SLICE 3: FAMILY TAJINE FEAST ON TABLE (Full Width As-Is) */}
         <section className="w-full relative cursor-pointer" onClick={scrollToCheckout}>
           <img
-            src="/creatives/family_tajine_feast.png"
+            src="/creatives/shoop_tajine.jpg"
             alt="طاجين مغربي ساخن ومذاق أصيل مباشرة فوق المائدة"
             className="w-full h-auto block"
             loading="lazy"
           />
         </section>
 
-        {/* 7. CUSTOMER REVIEWS SECTION (Exact ShoopBeam Title & Stars) */}
-        <section className="py-6 px-3 sm:px-5 bg-white border-t border-slate-100">
-          <div className="text-center space-y-1 mb-6">
-            <h2 className="text-2xl sm:text-3xl font-black text-black">
-              بعض آراء زبنائنا
-            </h2>
-            <div className="flex items-center justify-center gap-1 text-amber-400 text-xl">
-              <span>⭐</span>
-              <span>⭐</span>
-              <span>⭐</span>
-              <span>⭐</span>
-              <span>⭐</span>
-            </div>
-            <p className="text-xs text-slate-500 font-bold">
-              تقييم 4.9 من 5 (أكثر من 1,480 زبون راضٍ في جميع أنحاء المغرب)
-            </p>
-          </div>
-
-          {/* Authentic Moroccan WhatsApp Testimonial Cards */}
-          <div className="space-y-3">
-            
-            {/* Review 1 */}
-            <div className="bg-[#F0FDF4] border border-emerald-200/80 rounded-2xl p-4 shadow-sm text-right space-y-2">
-              <div className="flex justify-between items-center border-b border-emerald-100 pb-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-xs">
-                    ف.ز
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900">فاطمة الزهراء ع.</h4>
-                    <span className="text-[10px] text-slate-500">الدار البيضاء (زبون مؤكد ✔️)</span>
-                  </div>
-                </div>
-                <div className="text-amber-400 text-xs">⭐⭐⭐⭐⭐</div>
-              </div>
-              <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                &ldquo;سلام عليكم ختي، وصلني الريشو اليوم فـ الصباح وجربتو دغيا. تبارك الله سخونية مجهدة كيسخن الما فـ 3 دقايق وطيبت بيه الغدا دغيا. شكرا بزاف على المعاملة النقية والتوصيل فـ وقتو.&rdquo;
-              </p>
-            </div>
-
-            {/* Review 2 */}
-            <div className="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 shadow-sm text-right space-y-2">
-              <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-slate-700 text-white font-bold flex items-center justify-center text-xs">
-                    م.س
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900">سي محمد السوسي</h4>
-                    <span className="text-[10px] text-slate-500">مراكش (زبون مؤكد ✔️)</span>
-                  </div>
-                </div>
-                <div className="text-amber-400 text-xs">⭐⭐⭐⭐⭐</div>
-              </div>
-              <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                &ldquo;خديت الباك ديال 2 قطع، واحد درتو فـ المكتب والتاني ديتو للوالدة. عجبها بزااف وخفيف ومامعذبش فـ الهزان بحال البوطة. سلعة كاليتي ناضية والله يرحم الوالدين.&rdquo;
-              </p>
-            </div>
-
-            {/* Review 3 */}
-            <div className="bg-[#F0FDF4] border border-emerald-200/80 rounded-2xl p-4 shadow-sm text-right space-y-2">
-              <div className="flex justify-between items-center border-b border-emerald-100 pb-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-xs">
-                    ر.ب
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900">رشيد بناني</h4>
-                    <span className="text-[10px] text-slate-500">طنجة (زبون مؤكد ✔️)</span>
-                  </div>
-                </div>
-                <div className="text-amber-400 text-xs">⭐⭐⭐⭐⭐</div>
-              </div>
-              <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                &ldquo;التوصيل جا فـ 24 ساعة بالضبط. جربت طيبت بيه الطاجين فوق الطبلة كيبقى سخون ولديد، واستهلاك الضو قليل بفضل الترموستات كيطفى ملي كيسخن. كنصح بيه أي واحد.&rdquo;
-              </p>
-            </div>
-
-            {/* Review 4 */}
-            <div className="bg-[#F8FAFC] border border-slate-200 rounded-2xl p-4 shadow-sm text-right space-y-2">
-              <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-slate-700 text-white font-bold flex items-center justify-center text-xs">
-                    ح.م
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xs text-slate-900">حبيبة مكناسي</h4>
-                    <span className="text-[10px] text-slate-500">مكناس (زبون مؤكد ✔️)</span>
-                  </div>
-                </div>
-                <div className="text-amber-400 text-xs">⭐⭐⭐⭐⭐</div>
-              </div>
-              <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                &ldquo;والله حتى عتقني شحال من مرة فاش كتسالي البوطة فـ نص الطياب. كنسخنو بيه المسمن ونطيبو بيه القهوة فـ ثواني. شكرا متجر دالكس على المصداقية.&rdquo;
-              </p>
-            </div>
-
-          </div>
+        {/* 7. SOCIAL PROOF SLICE: WHATSAPP CUSTOMER PROOF (Full Width As-Is) */}
+        <section className="w-full relative cursor-pointer" onClick={scrollToCheckout}>
+          <img
+            src="/creatives/shoop_reviews.jpg"
+            alt="بعض آراء زبنائنا تقييم 4.9 من 5 محادثات واتساب حقيقية"
+            className="w-full h-auto block"
+            loading="lazy"
+          />
         </section>
 
         {/* 8. BOTTOM TRUST BADGES BANNER (ShoopBeam final section) */}
-        <section className="p-4 bg-slate-900 text-white text-center space-y-3 mt-4">
+        <section className="p-5 bg-slate-900 text-white text-center space-y-3 mt-4">
           <div className="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 mx-auto flex items-center justify-center text-2xl">
             <i className="fa-solid fa-award" />
           </div>
