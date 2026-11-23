@@ -133,3 +133,79 @@ body {
   0% { transform: translateX(-100%) rotate(30deg); }
   100% { transform: translateX(100%) rotate(30deg); }
 }
+
+/* Neon Rainbow/Fire Animated Border for Checkout Card */
+.neon-rainbow-card {
+  position: relative;
+  background: linear-gradient(160deg, #ffffff 0%, #fffef9 40%, #fff7ed 100%);
+  border-radius: 1.5rem;
+  z-index: 1;
+}
+
+.neon-rainbow-card::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 1.75rem;
+  background: linear-gradient(90deg, #ff0055, #f59e0b, #10b981, #06b6d4, #ff0055);
+  background-size: 300% 300%;
+  animation: animatedCopperBorder 3.5s linear infinite;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.85;
+}
+
+.neon-rainbow-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 1.65rem;
+  background: linear-gradient(90deg, #ff0055, #f59e0b, #10b981, #06b6d4, #ff0055);
+  background-size: 300% 300%;
+  animation: animatedCopperBorder 3.5s linear infinite;
+  z-index: -1;
+}
+
+/* Green CTA Button with high-energy pulse & animated shimmer sweep */
+.btn-green-animated {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #10b981 0%, #16a34a 50%, #15803d 100%);
+  box-shadow: 0 0 20px rgba(22, 163, 74, 0.5), 0 0 40px rgba(16, 185, 129, 0.3);
+  animation: greenBtnPulse 2.5s infinite ease-in-out;
+  transition: all 0.25s ease;
+}
+
+.btn-green-animated:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 30px rgba(22, 163, 74, 0.8), 0 0 60px rgba(16, 185, 129, 0.5);
+}
+
+.btn-green-animated::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 75%
+  );
+  transform: rotate(25deg);
+  animation: shimmerSweep 2.2s infinite;
+}
+
+@keyframes greenBtnPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(22, 163, 74, 0.5), 0 0 40px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(22, 163, 74, 0.85), 0 0 60px rgba(16, 185, 129, 0.6);
+  }
+}
+
