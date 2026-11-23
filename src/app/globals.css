@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @theme {
+  --font-alexandria: 'Alexandria', 'Tajawal', sans-serif;
+  --font-tajawal: 'Tajawal', sans-serif;
   --font-cairo: 'Cairo', sans-serif;
   --font-inter: 'Inter', sans-serif;
-  --font-sans: 'Cairo', 'Inter', sans-serif;
+  --font-sans: 'Alexandria', 'Tajawal', 'Cairo', 'Inter', sans-serif;
 
   --color-darlux-[#0f172a]: #0f172a;
   --color-darlux-[#1e293b]: #1e293b;
@@ -208,4 +210,109 @@ body {
     box-shadow: 0 0 30px rgba(22, 163, 74, 0.85), 0 0 60px rgba(16, 185, 129, 0.6);
   }
 }
+
+/* ============================================================
+   NEW 2026 LUXURY ULTRA-SMOOTH SILVER & GOLD/ORANGE ANIMATIONS
+   ============================================================ */
+
+/* Slow ambient Silver & Gold/Orange background */
+.bg-gold-silver-ambient {
+  background: linear-gradient(135deg, #f8fafc 0%, #fef3c7 25%, #f1f5f9 50%, #fed7aa 75%, #f8fafc 100%);
+  background-size: 300% 300%;
+  animation: slowGoldSilverShift 14s ease-in-out infinite alternate;
+}
+
+@keyframes slowGoldSilverShift {
+  0% { background-position: 0% 25%; }
+  50% { background-position: 100% 75%; }
+  100% { background-position: 0% 25%; }
+}
+
+/* Liquid Gold & Platinum Silver Neon Border Card */
+.neon-gold-silver-card {
+  position: relative;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 253, 245, 0.96) 45%, rgba(248, 250, 252, 0.98) 100%);
+  backdrop-filter: blur(24px);
+  border-radius: 1.75rem;
+  z-index: 1;
+}
+
+.neon-gold-silver-card::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 2rem;
+  background: linear-gradient(90deg, #d97706, #fbbf24, #cbd5e1, #f59e0b, #e2e8f0, #d97706);
+  background-size: 300% 300%;
+  animation: animatedSlowGoldSilver 9s ease-in-out infinite;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.8;
+}
+
+.neon-gold-silver-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 1.85rem;
+  background: linear-gradient(90deg, #d97706, #fbbf24, #cbd5e1, #f59e0b, #e2e8f0, #d97706);
+  background-size: 300% 300%;
+  animation: animatedSlowGoldSilver 9s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes animatedSlowGoldSilver {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Ultra-Smooth Luxury Green CTA Button */
+.btn-emerald-luxury {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #10b981 0%, #16a34a 50%, #059669 100%);
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.5), 0 0 20px rgba(5, 150, 105, 0.25);
+  animation: slowGreenBreath 3s infinite ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-emerald-luxury:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 15px 35px -5px rgba(16, 185, 129, 0.7), 0 0 30px rgba(5, 150, 105, 0.4);
+}
+
+.btn-emerald-luxury::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 80%
+  );
+  transform: rotate(25deg);
+  animation: shimmerSweepSlow 3s infinite ease-in-out;
+}
+
+@keyframes shimmerSweepSlow {
+  0% { transform: translateX(-120%) rotate(25deg); }
+  100% { transform: translateX(120%) rotate(25deg); }
+}
+
+@keyframes slowGreenBreath {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.45);
+  }
+  50% {
+    transform: scale(1.018);
+    box-shadow: 0 14px 30px -4px rgba(16, 185, 129, 0.7);
+  }
+}
+
 
